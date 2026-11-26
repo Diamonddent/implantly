@@ -1,0 +1,1049 @@
+[
+  {
+    "brand": "Astra Tech",
+    "system": "MultiBase EV",
+    "platforms": {
+      "XS": {
+        "diameter": 3
+      },
+      "S": {
+        "diameter": 3.6
+      },
+      "M": {
+        "diameter": 4.2
+      },
+      "L": {
+        "diameter": 4.8
+      },
+      "XL": {
+        "diameter": 5.4
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "healing_cap",
+            "name": "MultiBase Heal Cap",
+            "sku": "68012230",
+            "diameter": 5.4,
+            "height": 4
+          },
+          {
+            "type": "scan_body",
+            "name": "MultiBase ScanBody",
+            "sku": "68020522",
+            "note": "Used for MultiBase Temporary Cylinder and MultiBase ASA Cylinder"
+          },
+          {
+            "type": "multi_base_asa_cylinder_gold",
+            "name": "MultiBase ASA Cylinder",
+            "sku": "68012600",
+            "diameter": 5,
+            "a_height": 6.3,
+            "b_height": 4.5
+          },
+          {
+            "type": "bridge_screw",
+            "name": "MultiBase ASA Bridge Screw",
+            "sku": "68012601",
+            "m14": true,
+            "screw_head_height": 1.35,
+            "screw_head_diameter": 2.2
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "Printed Model Analog - MultiBase Abutment EV",
+            "sku": "68020099"
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "MultiBase Heal Cap",
+              "sku": "68012230",
+              "diameter": 5.4,
+              "height": 4
+            },
+            {
+              "type": "pickup",
+              "name": "MultiBase Pick-Up",
+              "sku": "68012232",
+              "diameter": 5.5,
+              "height": 15,
+              "technique": "open tray"
+            },
+            {
+              "type": "healing_cylinder",
+              "name": "MultiBase Burnout Cylinder",
+              "sku": "68012240",
+              "diameter": 4.8,
+              "height": 10
+            },
+            {
+              "type": "analog",
+              "name": "MultiBase Analog",
+              "sku": "68012238",
+              "height": 14
+            },
+            {
+              "type": "bridge_screw",
+              "name": "MultiBase Bridge Screw",
+              "sku": "68012233",
+              "m14": true,
+              "screw_head_height": 1.65,
+              "screw_head_diameter": 2.1
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "MultiBase Heal Cap",
+              "sku": "68012230",
+              "diameter": 5.4,
+              "height": 4
+            },
+            {
+              "type": "transfer",
+              "name": "MultiBase Transfer",
+              "sku": "68012231",
+              "diameter": 5.5,
+              "height": 9.5,
+              "technique": "closed tray"
+            },
+            {
+              "type": "healing_cylinder",
+              "name": "MultiBase Burnout Cylinder",
+              "sku": "68012240",
+              "diameter": 4.8,
+              "height": 10
+            },
+            {
+              "type": "analog",
+              "name": "MultiBase Analog",
+              "sku": "68012238",
+              "height": 14
+            },
+            {
+              "type": "bridge_screw",
+              "name": "MultiBase Bridge Screw",
+              "sku": "68012233",
+              "m14": true,
+              "screw_head_height": 1.65,
+              "screw_head_diameter": 2.1
+            }
+          ]
+        }
+      }
+    },
+    "multi_unit_abutments": [
+      {
+        "platform": "XS",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1.5,
+                "sku": "68012171"
+              },
+              {
+                "height": 2.5,
+                "sku": "68012172"
+              },
+              {
+                "height": 3.5,
+                "sku": "68012173"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": []
+          },
+          "30_degree": {
+            "gingival_heights": []
+          }
+        }
+      },
+      {
+        "platform": "S",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1.5,
+                "sku": "68012174"
+              },
+              {
+                "height": 2.5,
+                "sku": "68012175"
+              },
+              {
+                "height": 3.5,
+                "sku": "68012176"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2.5,
+                "sku": "68012177"
+              },
+              {
+                "height": 3.5,
+                "sku": "68012178"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 3.5,
+                "sku": "68012179"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "platform": "M",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1.5,
+                "sku": "68012180"
+              },
+              {
+                "height": 2.5,
+                "sku": "68012181"
+              },
+              {
+                "height": 3.5,
+                "sku": "68012182"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2.5,
+                "sku": "68012183"
+              },
+              {
+                "height": 3.5,
+                "sku": "68012184"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 3.5,
+                "sku": "68012185"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "platform": "L",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1.5,
+                "sku": "68012186"
+              },
+              {
+                "height": 2.5,
+                "sku": "68012187"
+              },
+              {
+                "height": 3.5,
+                "sku": "68012188"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2.5,
+                "sku": "68012189"
+              },
+              {
+                "height": 3.5,
+                "sku": "68012190"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 3.5,
+                "sku": "68012191"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "platform": "XL",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1.5,
+                "sku": "68012192"
+              },
+              {
+                "height": 2.5,
+                "sku": "68012193"
+              },
+              {
+                "height": 3.5,
+                "sku": "68012194"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2.5,
+                "sku": "68012195"
+              },
+              {
+                "height": 3.5,
+                "sku": "68012196"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 3.5,
+                "sku": "68012197"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "brand": "Straumann",
+    "system": "Multi-Unit BLT/BLX",
+    "platforms": {
+      "NC": {
+        "diameter": 3.3
+      },
+      "RC": {
+        "diameter": 4.1
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "healing_cap",
+            "name": "Protective Cap",
+            "skus": [
+              "024.4323",
+              "024.4324"
+            ],
+            "height": 5.1
+          },
+          {
+            "type": "scan_body",
+            "name": "Scanbody Ø4.6mm",
+            "sku": "025.0081"
+          },
+          {
+            "type": "variobase",
+            "name": "Variobase for Bridge/Bar Ø4.6mm",
+            "sku": "023.0028"
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "Repositionable Analog Ø4.6mm",
+            "sku": "025.0008"
+          },
+          {
+            "type": "bridge_screw",
+            "name": "Occlusal Screw",
+            "sku": "023.4763"
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "Protective Cap",
+              "skus": [
+                "024.4323",
+                "024.4324"
+              ],
+              "height": 5.1
+            },
+            {
+              "type": "pickup",
+              "name": "Impression Post Open-tray Ø4.6mm",
+              "sku": "025.0012"
+            },
+            {
+              "type": "healing_cylinder",
+              "name": "Titanium Coping Bridge Ø4.6mm",
+              "sku": "023.4751"
+            },
+            {
+              "type": "analog",
+              "name": "Analog for Screw-retained Abutments Ø4.6mm",
+              "sku": "023.4756"
+            },
+            {
+              "type": "bridge_screw",
+              "name": "Occlusal Screw",
+              "sku": "023.4763"
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "Protective Cap",
+              "skus": [
+                "024.4323",
+                "024.4324"
+              ],
+              "height": 5.1
+            },
+            {
+              "type": "transfer",
+              "name": "Impression Post Closed-tray Ø4.6mm",
+              "sku": "025.0014"
+            },
+            {
+              "type": "healing_cylinder",
+              "name": "Titanium Coping Crown Ø4.6mm",
+              "sku": "023.4747"
+            },
+            {
+              "type": "analog",
+              "name": "Analog for Screw-retained Abutments Ø4.6mm",
+              "sku": "023.4756"
+            },
+            {
+              "type": "bridge_screw",
+              "name": "Occlusal Screw",
+              "sku": "023.4763"
+            }
+          ]
+        }
+      }
+    },
+    "multi_unit_abutments": [
+      {
+        "platform": "NC",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1.5,
+                "sku": "022.0128S"
+              },
+              {
+                "height": 2.5,
+                "sku": "022.0129S"
+              },
+              {
+                "height": 3.5,
+                "sku": "022.0130S"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2.5,
+                "sku": "022.0136S"
+              },
+              {
+                "height": 3.5,
+                "sku": "022.0138S"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 3.5,
+                "sku": "022.0144S"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "platform": "RC",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1.5,
+                "sku": "022.0132S"
+              },
+              {
+                "height": 2.5,
+                "sku": "022.0133S"
+              },
+              {
+                "height": 3.5,
+                "sku": "022.0134S"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2.5,
+                "sku": "022.0136S"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": []
+          }
+        }
+      }
+    ]
+  },
+  {
+    "brand": "Nobel Biocare",
+    "system": "Multi-Unit",
+    "platforms": {
+      "NP": {
+        "diameter": 3.5
+      },
+      "RP": {
+        "diameter": 4.3
+      },
+      "WP": {
+        "diameter": 5
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "healing_cap",
+            "name": "Multi-Unit Healing Cap",
+            "note": "Available for all platforms"
+          },
+          {
+            "type": "scan_body",
+            "name": "Multi-Unit Scan Body",
+            "platforms": [
+              "NP",
+              "RP",
+              "WP"
+            ]
+          },
+          {
+            "type": "ti_base",
+            "name": "Multi-Unit Ti-Base",
+            "note": "For custom abutments"
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "Multi-Unit Digital Analog"
+          },
+          {
+            "type": "bridge_screw",
+            "name": "Multi-Unit Bridge Screw",
+            "note": "Titanium with TiN coating available"
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "Multi-Unit Healing Cap"
+            },
+            {
+              "type": "pickup",
+              "name": "Multi-Unit Open Tray Coping"
+            },
+            {
+              "type": "healing_cylinder",
+              "name": "Multi-Unit Castable Abutment"
+            },
+            {
+              "type": "analog",
+              "name": "Multi-Unit Analog"
+            },
+            {
+              "type": "bridge_screw",
+              "name": "Multi-Unit Bridge Screw"
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "Multi-Unit Healing Cap"
+            },
+            {
+              "type": "transfer",
+              "name": "Multi-Unit Closed Tray Coping"
+            },
+            {
+              "type": "healing_cylinder",
+              "name": "Multi-Unit Castable Abutment"
+            },
+            {
+              "type": "analog",
+              "name": "Multi-Unit Analog"
+            },
+            {
+              "type": "bridge_screw",
+              "name": "Multi-Unit Bridge Screw"
+            }
+          ]
+        }
+      }
+    },
+    "multi_unit_abutments": [
+      {
+        "platform": "NP",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1,
+                "sku": "IPD/AA-MN-01"
+              },
+              {
+                "height": 2,
+                "sku": "IPD/AA-MN-02"
+              },
+              {
+                "height": 3,
+                "sku": "IPD/AA-MN-03"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2,
+                "sku": "IPD/AA-MN-12"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 3,
+                "sku": "IPD/AA-MN-33"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "platform": "RP",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1,
+                "sku": "IPD/AB-MR-01"
+              },
+              {
+                "height": 2,
+                "sku": "IPD/AB-MR-02"
+              },
+              {
+                "height": 3,
+                "sku": "IPD/AB-MR-03"
+              },
+              {
+                "height": 4,
+                "sku": "IPD/AB-MR-04"
+              },
+              {
+                "height": 5,
+                "sku": "IPD/AB-MR-05"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2,
+                "sku": "IPD/AB-MR-12"
+              },
+              {
+                "height": 3,
+                "sku": "IPD/AB-MR-13"
+              },
+              {
+                "height": 4,
+                "sku": "IPD/AB-MR-14"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 3,
+                "sku": "IPD/AB-MR-33"
+              },
+              {
+                "height": 4,
+                "sku": "IPD/AB-MR-34"
+              },
+              {
+                "height": 5,
+                "sku": "IPD/AB-MR-35"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "platform": "WP",
+        "angulations": {
+          "straight": {
+            "gingival_heights": []
+          },
+          "17_degree": {
+            "gingival_heights": []
+          },
+          "30_degree": {
+            "gingival_heights": []
+          }
+        }
+      }
+    ]
+  },
+  {
+    "brand": "MegaGen",
+    "system": "AnyRidge Multi-unit",
+    "platforms": {
+      "N-Regular": {
+        "diameter": 4.8
+      },
+      "S-Type": {
+        "diameter": 5
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "healing_cap",
+            "name": "MUA Healing Cap AnyRidge",
+            "sku": "MUAHCL"
+          },
+          {
+            "type": "scan_body",
+            "name": "MUA Impression Coping (Pick-up)",
+            "sku": "MUAICT"
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "MUA Lab Analog AnyRidge",
+            "sku": "MUALA"
+          },
+          {
+            "type": "bridge_screw",
+            "name": "MUA Temporary Cylinder",
+            "sku": "MUATCL"
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "MUA Healing Cap AnyRidge",
+              "sku": "MUAHCL"
+            },
+            {
+              "type": "pickup",
+              "name": "MUA Impression Coping (Pick-up)",
+              "sku": "MUAICT"
+            },
+            {
+              "type": "analog",
+              "name": "MUA Lab Analog AnyRidge",
+              "sku": "MUALA"
+            },
+            {
+              "type": "bridge_screw",
+              "name": "MUA CCM Cylinder AnyRidge",
+              "sku": "MUACCML"
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "MUA Healing Cap AnyRidge",
+              "sku": "MUAHCL"
+            },
+            {
+              "type": "transfer",
+              "name": "S-Type Impression Coping Transfer",
+              "sku": "RITE480"
+            },
+            {
+              "type": "analog",
+              "name": "S-Type Lab Analog AnyRidge",
+              "sku": "RELA300"
+            },
+            {
+              "type": "bridge_screw",
+              "name": "S-Type CCM Cylinder AnyRidge",
+              "sku": "RCA5013HT"
+            }
+          ]
+        }
+      }
+    },
+    "multi_unit_abutments": [
+      {
+        "platform": "N-Regular",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1.5,
+                "sku": "MUAARN0015C"
+              },
+              {
+                "height": 2.5,
+                "sku": "MUAARN0025C"
+              },
+              {
+                "height": 3.5,
+                "sku": "MUAARN0035C"
+              },
+              {
+                "height": 4.5,
+                "sku": "MUAARN0045C"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2.5,
+                "sku": "MUAARN1725LC"
+              },
+              {
+                "height": 3.5,
+                "sku": "MUAARH1735LC"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 3.5,
+                "sku": "MUAARH3035LC"
+              },
+              {
+                "height": 3.5,
+                "sku": "MUAARN3035LC"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "platform": "S-Type",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 2,
+                "sku": "AANMUH5020T"
+              },
+              {
+                "height": 3,
+                "sku": "AANMUN5030T"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 1,
+                "sku": "AANMUH50117L"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 2,
+                "sku": "AANMUH50229L"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  {
+    "brand": "ROOTT",
+    "system": "ROOTT MUA Viper Edition",
+    "platforms": {
+      "MUA-48": {
+        "diameter": 4.8
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "healing_cap",
+            "name": "MUA Healing Cap ROOTT",
+            "sku": "MUA-HC"
+          },
+          {
+            "type": "scan_body",
+            "name": "MUA Digital Analog ROOTT",
+            "sku": "MUA-ANAD"
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "MUA Titanium Cylinder ROOTT",
+            "sku": "MUA-TC"
+          },
+          {
+            "type": "bridge_screw",
+            "name": "MUA Castable Cylinder ROOTT",
+            "sku": "MUA-PC"
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "MUA Healing Cap ROOTT",
+              "sku": "MUA-HC"
+            },
+            {
+              "type": "pickup",
+              "name": "MUA Impression Coping Open Tray",
+              "sku": "MUA-IC-O"
+            },
+            {
+              "type": "analog",
+              "name": "MUA Lab Analog ROOTT",
+              "sku": "MUA-ANAM"
+            },
+            {
+              "type": "bridge_screw",
+              "name": "MUA Castable Cylinder ROOTT",
+              "sku": "MUA-PC"
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "healing_cap",
+              "name": "MUA Healing Cap ROOTT",
+              "sku": "MUA-HC"
+            },
+            {
+              "type": "transfer",
+              "name": "MUA Impression Coping Closed Tray",
+              "sku": "MUA-IC-C"
+            },
+            {
+              "type": "analog",
+              "name": "MUA Lab Analog ROOTT",
+              "sku": "MUA-ANAM"
+            },
+            {
+              "type": "bridge_screw",
+              "name": "MUA Castable Cylinder ROOTT",
+              "sku": "MUA-PC"
+            }
+          ]
+        }
+      }
+    },
+    "multi_unit_abutments": [
+      {
+        "platform": "MUA-48",
+        "angulations": {
+          "straight": {
+            "gingival_heights": [
+              {
+                "height": 1.5,
+                "sku": "MUA015"
+              },
+              {
+                "height": 2.5,
+                "sku": "MUA025"
+              },
+              {
+                "height": 3.5,
+                "sku": "MUA035"
+              },
+              {
+                "height": 4.5,
+                "sku": "MUA045"
+              }
+            ]
+          },
+          "17_degree": {
+            "gingival_heights": [
+              {
+                "height": 2.5,
+                "sku": "MUA1725"
+              },
+              {
+                "height": 3.5,
+                "sku": "MUA1735"
+              }
+            ]
+          },
+          "30_degree": {
+            "gingival_heights": [
+              {
+                "height": 3.5,
+                "sku": "MUA3035"
+              },
+              {
+                "height": 4.5,
+                "sku": "MUA3045"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+]

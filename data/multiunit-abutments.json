@@ -1,0 +1,1136 @@
+{
+  "description": "Multi-Unit Abutment catalog — Astra Dentsply (MultiBase EV) + IPD compatible multi-unit abutments",
+  "astra_multiunit": {
+    "brand": "Astra Dentsply",
+    "product_line": "MultiBase EV",
+    "platforms": {
+      "XS": {
+        "diameter_mm": 3,
+        "abutments": {
+          "straight": [
+            {
+              "sku": "68012171",
+              "name": "XS MultiBase Abutment EV 1.5",
+              "qty": 0,
+              "gingival_height_mm": 1.5
+            },
+            {
+              "sku": "68012172",
+              "name": "XS MultiBase Abutment EV 2.5",
+              "qty": 0,
+              "gingival_height_mm": 2.5
+            },
+            {
+              "sku": "68012173",
+              "name": "XS MultiBase Abutment EV 3.5",
+              "qty": 0,
+              "gingival_height_mm": 3.5
+            }
+          ],
+          "angled_17": [],
+          "angled_30": []
+        }
+      },
+      "S": {
+        "diameter_mm": 3.6,
+        "abutments": {
+          "straight": [
+            {
+              "sku": "68012174",
+              "name": "S MultiBase Abutment EV 1.5",
+              "qty": 39,
+              "gingival_height_mm": 1.5
+            },
+            {
+              "sku": "68012175",
+              "name": "S MultiBase Abutment EV 2.5",
+              "qty": 35,
+              "gingival_height_mm": 2.5
+            },
+            {
+              "sku": "68012176",
+              "name": "S MultiBase Abutment EV 3.5",
+              "qty": 0,
+              "gingival_height_mm": 3.5
+            }
+          ],
+          "angled_17": [
+            {
+              "sku": "68012178",
+              "name": "S MultiBase Abutment EV 17° 1.5 eng",
+              "qty": 36,
+              "gingival_height_mm": 1.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012179",
+              "name": "S MultiBase Abutment EV 17° 2.5 eng",
+              "qty": 35,
+              "gingival_height_mm": 2.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012180",
+              "name": "S MultiBase Abutment EV 17° 3.5 eng",
+              "qty": 0,
+              "gingival_height_mm": 3.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012182",
+              "name": "S MultiBase Abutment EV 17° 1.5 non-eng",
+              "qty": 40,
+              "gingival_height_mm": 1.5,
+              "engaging": false
+            },
+            {
+              "sku": "68012183",
+              "name": "S MultiBase Abutment EV 17° 2.5 non-eng",
+              "qty": 57,
+              "gingival_height_mm": 2.5,
+              "engaging": false
+            },
+            {
+              "sku": "68012184",
+              "name": "S MultiBase Abutment EV 17° 3.5 non-eng",
+              "qty": 0,
+              "gingival_height_mm": 3.5,
+              "engaging": false
+            }
+          ],
+          "angled_30": [
+            {
+              "sku": "68012186",
+              "name": "S MultiBase Abutment EV 30° 1.5 Eng",
+              "qty": 38,
+              "gingival_height_mm": 1.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012187",
+              "name": "S MultiBase Abutment EV 30° 2.5 eng",
+              "qty": 50,
+              "gingival_height_mm": 2.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012190",
+              "name": "S MultiBase Abutment EV 30° 1.5 non-eng",
+              "qty": 0,
+              "gingival_height_mm": 1.5,
+              "engaging": false
+            },
+            {
+              "sku": "68012191",
+              "name": "S MultiBase Abutment EV 30° 2.5 non eng",
+              "qty": 57,
+              "gingival_height_mm": 2.5,
+              "engaging": false
+            }
+          ]
+        }
+      },
+      "M": {
+        "diameter_mm": 4.2,
+        "abutments": {
+          "straight": [
+            {
+              "sku": "68012194",
+              "name": "M MultiBase Abutment EV1.5",
+              "qty": 37,
+              "gingival_height_mm": 1.5
+            },
+            {
+              "sku": "68012195",
+              "name": "M MultiBase Abutment EV 2.5",
+              "qty": 55,
+              "gingival_height_mm": 2.5
+            },
+            {
+              "sku": "68012196",
+              "name": "M MultiBase Abutment EV3.5",
+              "qty": 0,
+              "gingival_height_mm": 3.5
+            }
+          ],
+          "angled_17": [
+            {
+              "sku": "68012198",
+              "name": "M MultiBase Abutment EV 17° 1.5 Eng",
+              "qty": 38,
+              "gingival_height_mm": 1.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012199",
+              "name": "M MultiBase Abutment EV 17° 2.5 Eng",
+              "qty": 35,
+              "gingival_height_mm": 2.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012200",
+              "name": "M MultiBase Abutment EV 17° 3.5 Eng",
+              "qty": 0,
+              "gingival_height_mm": 3.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012202",
+              "name": "M MultiBase Abutment EV 17° 1.5 Non-Eng",
+              "qty": 40,
+              "gingival_height_mm": 1.5,
+              "engaging": false
+            },
+            {
+              "sku": "68012203",
+              "name": "M MultiBase Abutment EV 17° 2.5 Non-Eng",
+              "qty": 60,
+              "gingival_height_mm": 2.5,
+              "engaging": false
+            },
+            {
+              "sku": "68012204",
+              "name": "M MultiBase Abutment EV 17° 3.5 Non-Eng",
+              "qty": 5,
+              "gingival_height_mm": 3.5,
+              "engaging": false
+            }
+          ],
+          "angled_30": [
+            {
+              "sku": "68012206",
+              "name": "M MultiBase Abutment EV 30° 1.5 eng",
+              "qty": 40,
+              "gingival_height_mm": 1.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012207",
+              "name": "M MultiBase Abutment EV 30° 2.5 eng",
+              "qty": 40,
+              "gingival_height_mm": 2.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012208",
+              "name": "M MultiBase Abutment EV 30° 1.5 non-eng",
+              "qty": 9,
+              "gingival_height_mm": 1.5,
+              "engaging": false
+            },
+            {
+              "sku": "68012209",
+              "name": "M MultiBase Abutment EV 30° 2.5 non-eng",
+              "qty": 60,
+              "gingival_height_mm": 2.5,
+              "engaging": false
+            }
+          ]
+        }
+      },
+      "L": {
+        "diameter_mm": 4.8,
+        "abutments": {
+          "straight": [
+            {
+              "sku": "68012210",
+              "name": "L MultiBase Abutment EV 1.5",
+              "qty": 0,
+              "gingival_height_mm": 1.5
+            },
+            {
+              "sku": "68012211",
+              "name": "L MultiBase Abutment EV 2.5",
+              "qty": 5,
+              "gingival_height_mm": 2.5
+            },
+            {
+              "sku": "68012212",
+              "name": "L MultiBase Abutment EV 3.5",
+              "qty": 0,
+              "gingival_height_mm": 3.5
+            }
+          ],
+          "angled_17": [
+            {
+              "sku": "68012214",
+              "name": "L MultiBase Abutment EV 17° 1.5 eng",
+              "qty": 5,
+              "gingival_height_mm": 1.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012215",
+              "name": "L MultiBase Abutment EV 17° 2.5 eng",
+              "qty": 0,
+              "gingival_height_mm": 2.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012216",
+              "name": "L MultiBase Abutment EV 17° 3.5 eng",
+              "qty": 0,
+              "gingival_height_mm": 3.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012218",
+              "name": "L MultiBase Abutment EV 17° 1.5 non-eng",
+              "qty": 10,
+              "gingival_height_mm": 1.5,
+              "engaging": false
+            },
+            {
+              "sku": "68012219",
+              "name": "L MultiBase Abutment EV 17° 2.5 non-eng",
+              "qty": 10,
+              "gingival_height_mm": 2.5,
+              "engaging": false
+            },
+            {
+              "sku": "68012220",
+              "name": "L MultiBase Abutment EV 17° 3.5 non-eng",
+              "qty": 0,
+              "gingival_height_mm": 3.5,
+              "engaging": false
+            }
+          ],
+          "angled_30": [
+            {
+              "sku": "68012221",
+              "name": "L MultiBase Abutment EV 30° 1.5 eng",
+              "qty": 5,
+              "gingival_height_mm": 1.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012222",
+              "name": "L MultiBase Abutment EV 30° 2.5 eng",
+              "qty": 5,
+              "gingival_height_mm": 2.5,
+              "engaging": true
+            },
+            {
+              "sku": "68012223",
+              "name": "L MultiBase Abutment EV 30° 1.5 non-eng",
+              "qty": 5,
+              "gingival_height_mm": 1.5,
+              "engaging": false
+            },
+            {
+              "sku": "68012224",
+              "name": "L MultiBase Abutment EV 30° 2.5 non-eng",
+              "qty": 7,
+              "gingival_height_mm": 2.5,
+              "engaging": false
+            }
+          ]
+        }
+      }
+    },
+    "temporary_cylinder": {
+      "sku": "68012239",
+      "name": "MultiBase EV Temporary Cylinder",
+      "qty": 90
+    }
+  },
+  "ipd_multiunit": {
+    "brand": "IPD",
+    "description": "Third-party multi-unit abutments compatible with major implant systems",
+    "items_by_compatible_system": {
+      "Nobel Biocare": [
+        {
+          "sku": "IPD/AD-MN-03",
+          "name": "Straight Multi-unit Ø 3,5 H 3.5 /Multi-unit® Abutment /Nobel Biocare®",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/AD-MN-04",
+          "name": "Straight Multi-unit Ø 3,5 H 4.5 /Multi-unit® Abutment /Nobel Biocare®",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 4.5
+        },
+        {
+          "sku": "IPD/AD-MN-34",
+          "name": "Multi-unit Abutment  30° Ø 3,5 H 4.5 /Multi-unit® Abutment /Nobel Biocare®",
+          "qty": 5,
+          "angle_deg": 30,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 4.5
+        },
+        {
+          "sku": "IPD/AD-MR-03",
+          "name": "Straight Multi-unit Ø 4,3 H 3.5 /Multi-unit® Abutment /Nobel Biocare®",
+          "qty": 3,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.3",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/AD-MR-04",
+          "name": "Straight Multi-unit Ø 4,3 H 4.5 /Multi-unit® Abutment /Nobel Biocare®",
+          "qty": 3,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.3",
+          "gingival_height_mm": 4.5
+        },
+        {
+          "sku": "IPD/AD-MR-34",
+          "name": "Multi-unit Abutment  30° Ø 4,3 H 4.5 /Multi-unit® Abutment /Nobel Biocare®",
+          "qty": 3,
+          "angle_deg": 30,
+          "diameter_mm": "4.3",
+          "gingival_height_mm": 4.5
+        }
+      ],
+      "Straumann": [
+        {
+          "sku": "IPD/DB-MN-04",
+          "name": "Straight Multi-unit Ø 3,3 NC H 4.5 /Multi-unit® Abutment /Straumann®",
+          "qty": 2,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.3",
+          "gingival_height_mm": 4.5
+        },
+        {
+          "sku": "IPD/DB-MN-34",
+          "name": "Multi-unit Abutment  30° Ø 3,3 NC H 4.5 /Multi-unit® Abutment /Straumann®",
+          "qty": 2,
+          "angle_deg": 30,
+          "diameter_mm": "3.3",
+          "gingival_height_mm": 4.5
+        },
+        {
+          "sku": "IPD/DB-MR-04",
+          "name": "Straight Multi-unit Ø 4,1 H 4.5 /Multi-unit® Abutment /Straumann®",
+          "qty": 2,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 4.5
+        },
+        {
+          "sku": "IPD/DB-MR-34",
+          "name": "Multi-unit abutment 30° Ø 4.1 H 4.5 mm /Multi-unit® Abutment /Straumann®",
+          "qty": 3,
+          "angle_deg": 30,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 4.5
+        }
+      ],
+      "Astra": [
+        {
+          "sku": "IPD/EB-MN-01",
+          "name": "Straight Multi-unit Ø 3,6 H 1.5 Astra®",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.6",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/EB-MN-02",
+          "name": "Straight Multi-unit Ø 3,6 H 2.5 Astra®",
+          "qty": 2,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.6",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/EB-MN-03",
+          "name": "Straight Multi-unit Ø 3,6 H 3.5 Astra®",
+          "qty": 1,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.6",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/EB-MN-12",
+          "name": "Multi-unit Abutment  17° Ø 3,6 H 2.5 Astra®",
+          "qty": 5,
+          "angle_deg": 17,
+          "diameter_mm": "3.6",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/EB-MN-33",
+          "name": "Multi-unit Abutment  30° Ø 3,6 H 3.5 Astra®",
+          "qty": 5,
+          "angle_deg": 30,
+          "diameter_mm": "3.6",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/EB-MR-01",
+          "name": "Straight Multi-unit Ø 4,2 H 1.5 Astra®",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.2",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/EB-MR-02",
+          "name": "Straight Multi-unit Ø 4,2 H 2.5 Astra®",
+          "qty": 2,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.2",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/EB-MR-03",
+          "name": "Straight Multi-unit Ø 4,2 H 3.5 Astra®",
+          "qty": 3,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.2",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/EB-MR-12",
+          "name": "Multi-unit Abutment  17° Ø 4,2 H 2.5 Astra®",
+          "qty": 4,
+          "angle_deg": 17,
+          "diameter_mm": "4.2",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/EB-MR-13",
+          "name": "Multi-unit Abutment  17° Ø 4,2 H 3.5 Astra®",
+          "qty": 1,
+          "angle_deg": 17,
+          "diameter_mm": "4.2",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/EB-MR-33",
+          "name": "Multi-unit Abutment  30° Ø 4,2 H 3.5 Astra®",
+          "qty": 5,
+          "angle_deg": 30,
+          "diameter_mm": "4.2",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/EB-MT-01",
+          "name": "Straight Multi-unit Ø 3,0 GH 1.5 Astra®",
+          "qty": 8,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.0",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/EB-MT-02",
+          "name": "Straight Multi-unit Ø 3,0 GH 2.5 Astra®",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.0",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/EB-MT-03",
+          "name": "Straight Multi-unit Ø 3,0 GH 3.5 Astra®",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.0",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/EB-MW-01",
+          "name": "Straight Multi-unit Ø 4,8 GH 1.5 Astra®",
+          "qty": 2,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.8",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/EB-MW-02",
+          "name": "Straight Multi-unit Ø 4,8 GH 2.5 Astra®",
+          "qty": 3,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.8",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/EB-MW-03",
+          "name": "Straight Multi-unit Ø 4,8 GH 3.5 Astra®",
+          "qty": 2,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.8",
+          "gingival_height_mm": 3.5
+        }
+      ],
+      "BioHorizons": [
+        {
+          "sku": "IPD/LB-IN-02/3D",
+          "name": "Custom Ti Base Engaging Ø 3,5 GH 1.5/BioHorizons®-Tapered Internal®",
+          "qty": 10,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/LB-IN-03/3D",
+          "name": "Custom Ti Base Non-Engaging Ø 3,5 GH 1.5/BioHorizons®-Tapered Internal®",
+          "qty": 15,
+          "angle_deg": 0,
+          "engaging": false,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/LB-IN-04/3D",
+          "name": "Custom Ti Base Engaging Ø 3,5 GH 2.5/BioHorizons®-Tapered Internal®",
+          "qty": 3,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/LB-IN-05/3D",
+          "name": "Custom Ti Base Non-Engaging Ø 3,5 GH 2.5/BioHorizons®-Tapered Internal®",
+          "qty": 6,
+          "angle_deg": 0,
+          "engaging": false,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/LB-IR-00/3D",
+          "name": "Custom Ti Base Engaging Ø 4,5 GH 0.5/BioHorizons®-Tapered Internal®",
+          "qty": 15,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.5",
+          "gingival_height_mm": 0.5
+        },
+        {
+          "sku": "IPD/LB-IR-01/3D",
+          "name": "Custom Ti Base Non-Engaging Ø 4,5 GH 0.5/BioHorizons®-Tapered Internal®",
+          "qty": 15,
+          "angle_deg": 0,
+          "engaging": false,
+          "diameter_mm": "4.5",
+          "gingival_height_mm": 0.5
+        },
+        {
+          "sku": "IPD/LB-IR-02/3D",
+          "name": "Custom Ti Base Engaging Ø 4,5 GH 1.5/BioHorizons®-Tapered Internal®",
+          "qty": 10,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.5",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/LB-IR-03/3D",
+          "name": "Custom Ti Base Non-Engaging Ø 4,5 GH 1.5/BioHorizons®-Tapered Internal®",
+          "qty": 20,
+          "angle_deg": 0,
+          "engaging": false,
+          "diameter_mm": "4.5",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/LB-IR-04/3D",
+          "name": "Custom Ti Base Engaging Ø 4,5 GH 2.5/BioHorizons®-Tapered Internal®",
+          "qty": 4,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.5",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/LB-IR-05/3D",
+          "name": "Custom Ti Base Non-Engaging Ø 4,5 GH 2.5/BioHorizons®-Tapered Internal®",
+          "qty": 6,
+          "angle_deg": 0,
+          "engaging": false,
+          "diameter_mm": "4.5",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/LB-MN-12",
+          "name": "Multi-unit Abutment  17° Ø 3,5 H 2.5,Tapered Internal®,BioHorizons®",
+          "qty": 10,
+          "angle_deg": 17,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/LB-MN-13",
+          "name": "Multi-unit Abutment  17° Ø 3,5 H 3.5,Tapered Internal®,BioHorizons®",
+          "qty": 10,
+          "angle_deg": 17,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/LB-MN-33",
+          "name": "Multi-unit Abutment  30° Ø 3,5 H 3.5,Tapered Internal®,BioHorizons®",
+          "qty": 10,
+          "angle_deg": 30,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/LB-MN-34",
+          "name": "Multi-unit Abutment  30° Ø 3,5 H 4.5,Tapered Internal®,BioHorizons®",
+          "qty": 10,
+          "angle_deg": 30,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 4.5
+        },
+        {
+          "sku": "IPD/LB-MT-01",
+          "name": "Straight Multi-unit Ø 3,0 H 1.0,Tapered Internal®,BioHorizons®",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.0",
+          "gingival_height_mm": 1
+        },
+        {
+          "sku": "IPD/LB-MT-02",
+          "name": "Straight Multi-unit Ø 3,0 H 2.0,Tapered Internal®,BioHorizons®",
+          "qty": 10,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.0",
+          "gingival_height_mm": 2
+        },
+        {
+          "sku": "IPD/LB-MT-03",
+          "name": "Straight Multi-unit Ø 3,0 H 3.0,Tapered Internal®,BioHorizons®",
+          "qty": 10,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.0",
+          "gingival_height_mm": 3
+        },
+        {
+          "sku": "IPD/LB-SN-00",
+          "name": "Scan abutment Engaging Ø 3,5 H 10.0/BioHorizons®-Tapered Internal®",
+          "qty": 8,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 10
+        },
+        {
+          "sku": "IPD/LB-SN-01",
+          "name": "Scan abutment Non-Engaging Ø 3,5 H 10.0/BioHorizons®-Tapered Internal®",
+          "qty": 10,
+          "angle_deg": 0,
+          "engaging": false,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 10
+        },
+        {
+          "sku": "IPD/LB-SR-00",
+          "name": "Scan abutment Engaging Ø 4,5 H 10.0/BioHorizons®-Tapered Internal®",
+          "qty": 10,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.5",
+          "gingival_height_mm": 10
+        },
+        {
+          "sku": "IPD/LB-SR-01",
+          "name": "Scan abutment Non-Engaging Ø 4,5 H 10.0/BioHorizons®-Tapered Internal®",
+          "qty": 10,
+          "angle_deg": 0,
+          "engaging": false,
+          "diameter_mm": "4.5",
+          "gingival_height_mm": 10
+        },
+        {
+          "sku": "IPD/LB-ST-00",
+          "name": "Scan abutment Engaging Ø 3,0 H 10.0/BioHorizons®-Tapered Internal®",
+          "qty": 8,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.0",
+          "gingival_height_mm": 10
+        },
+        {
+          "sku": "IPD/LB-TR-00/TIN",
+          "name": "Ti Screw TiN Ø 3,0/3,5/4,5/5,7/BioHorizons®-Tapered Internal®",
+          "qty": 20,
+          "angle_deg": 0,
+          "diameter_mm": "3.0"
+        },
+        {
+          "sku": "IPD/LB-TR-50",
+          "name": "TPA Screw Ø 3,0/3,5/4,5/5,7/BioHorizons®-Tapered Internal®",
+          "qty": 31,
+          "angle_deg": 0,
+          "diameter_mm": "3.0"
+        }
+      ],
+      "Osstem": [
+        {
+          "sku": "IPD/OB-MN-01",
+          "name": "Straight Multi-unit Ø 3,5 H 1.5,TSIII,Osstem",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/OB-MN-12",
+          "name": "Multi-unit Abutment  17° Ø 3,5 H 2.5,TSIII,Osstem",
+          "qty": 5,
+          "angle_deg": 17,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/OB-MN-33",
+          "name": "Multi-unit Abutment  30° Ø 3,5 H 3.5,TSIII,Osstem",
+          "qty": 5,
+          "angle_deg": 30,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/OB-MR-01",
+          "name": "Straight Multi-unit Ø 4,0 H 1.5,TSIII,Osstem",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.0",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/OB-MR-12",
+          "name": "Multi-unit Abutment  17° Ø 4,0 H 2.5,TSIII,Osstem",
+          "qty": 5,
+          "angle_deg": 17,
+          "diameter_mm": "4.0",
+          "gingival_height_mm": 2.5
+        }
+      ],
+      "Bego/Semados": [
+        {
+          "sku": "IPD/SB-MN-01",
+          "name": "Straight Multi-unit Ø 3.25/3.75 H 1.5,Semados,Bego",
+          "qty": 4,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.25",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/SB-MN-02",
+          "name": "Straight Multi-unit Ø 3.25/3.75 H 2.5,Semados,Bego",
+          "qty": 3,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.25",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/SB-MN-12",
+          "name": "Multi-unit Abutment  17° Ø 3.25/3.75 H 2.5,Semados,Bego",
+          "qty": 5,
+          "angle_deg": 17,
+          "diameter_mm": "3.25",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/SB-MN-13",
+          "name": "Multi-unit Abutment  17° Ø 3.25/3.75 H 3.5,Semados,Bego",
+          "qty": 5,
+          "angle_deg": 17,
+          "diameter_mm": "3.25",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/SB-MN-33",
+          "name": "Multi-unit Abutment  30° Ø 3.25/3.75 H 3.5,Semados,Bego",
+          "qty": 2,
+          "angle_deg": 30,
+          "diameter_mm": "3.25",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/SB-MN-34",
+          "name": "Multi-unit Abutment  30° Ø 3.25/3.75 H 4.5,Semados,Bego",
+          "qty": 2,
+          "angle_deg": 30,
+          "diameter_mm": "3.25",
+          "gingival_height_mm": 4.5
+        },
+        {
+          "sku": "IPD/SB-MR-01",
+          "name": "Straight Multi-unit Ø 4,1 H 1.5-Semados-Bego",
+          "qty": 1,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/SB-MR-12",
+          "name": "Multi-unit Abutment  17° Ø 4,1 H 2.5-Semados-Bego",
+          "qty": 0,
+          "angle_deg": 17,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 2.5
+        }
+      ],
+      "Other": [
+        {
+          "sku": "IPD/AD-MN-01",
+          "name": "Straight Multi-unit Ø 3,5 H 1.5",
+          "qty": 14,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/AD-MN-02",
+          "name": "Straight Multi-unit Ø 3,5 H 2.5",
+          "qty": 14,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/AD-MN-12",
+          "name": "Multi-unit Abutment  17° Ø 3,5 H 2.5",
+          "qty": 14,
+          "angle_deg": 17,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/AD-MN-13",
+          "name": "Multi-unit Abutment  17° Ø 3,5 H 3.5",
+          "qty": 7,
+          "angle_deg": 17,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/AD-MN-33",
+          "name": "Multi-unit Abutment  30° Ø 3,5 H 3.5",
+          "qty": 7,
+          "angle_deg": 30,
+          "diameter_mm": "3.5",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/AD-MR-01",
+          "name": "Straight Multi-unit Ø 4,3 H 1.5",
+          "qty": 13,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.3",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/AD-MR-02",
+          "name": "Straight Multi-unit Ø 4,3 H 2.5",
+          "qty": 17,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.3",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/AD-MR-12",
+          "name": "Multi-unit Abutment  17° Ø 4,3 H 2.5",
+          "qty": 14,
+          "angle_deg": 17,
+          "diameter_mm": "4.3",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/AD-MR-13",
+          "name": "Multi-unit Abutment  17° Ø 4,3 H 3.5",
+          "qty": 11,
+          "angle_deg": 17,
+          "diameter_mm": "4.3",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/AD-MR-33",
+          "name": "Multi-unit Abutment  30° Ø 4,3 H 3.5",
+          "qty": 12,
+          "angle_deg": 30,
+          "diameter_mm": "4.3",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/DB-MN-01",
+          "name": "Straight Multi-unit Ø 3,3 NC H 1.5",
+          "qty": 9,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.3",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/DB-MN-02",
+          "name": "Straight Multi-unit Ø 3,3 NC H 2.5",
+          "qty": 12,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.3",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/DB-MN-03",
+          "name": "Straight Multi-unit Ø 3,3 NC H 3.5",
+          "qty": 4,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "3.3",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/DB-MN-12",
+          "name": "Multi-unit Abutment  17° Ø 3,3 NC H 2.5",
+          "qty": 10,
+          "angle_deg": 17,
+          "diameter_mm": "3.3",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/DB-MN-13",
+          "name": "Multi-unit Abutment  17° Ø 3,3 NC H 3.5",
+          "qty": 7,
+          "angle_deg": 17,
+          "diameter_mm": "3.3",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/DB-MN-33",
+          "name": "Multi-unit Abutment  30° Ø 3,3 NC H 3.5",
+          "qty": 12,
+          "angle_deg": 30,
+          "diameter_mm": "3.3",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/DB-MR-01",
+          "name": "Straight Multi-unit Ø 4,1 H 1.5",
+          "qty": 8,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/DB-MR-02",
+          "name": "Straight Multi-unit Ø 4,1 H 2.5",
+          "qty": 13,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/DB-MR-03",
+          "name": "Straight Multi-unit Ø 4,1 H 3.5",
+          "qty": 5,
+          "angle_deg": 0,
+          "engaging": true,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/DB-MR-12",
+          "name": "Multi-unit Abutment  17° Ø 4,1 H 2.5",
+          "qty": 12,
+          "angle_deg": 17,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/DB-MR-13",
+          "name": "Multi-unit abutment 17° Ø 4.1 H 3.5 mm",
+          "qty": 12,
+          "angle_deg": 17,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/DB-MR-33",
+          "name": "Multi-unit Abutment  30° Ø 4,1 H 3.5",
+          "qty": 12,
+          "angle_deg": 30,
+          "diameter_mm": "4.1",
+          "gingival_height_mm": 3.5
+        }
+      ],
+      "Straumann RB/WB": [
+        {
+          "sku": "IPD/DC-MR-01",
+          "name": "Straight Multi-unit RB/WB H 1.5",
+          "qty": 10,
+          "angle_deg": 0,
+          "engaging": true,
+          "gingival_height_mm": 1.5
+        },
+        {
+          "sku": "IPD/DC-MR-02",
+          "name": "Straight Multi-unit RB/WB H 2.5",
+          "qty": 10,
+          "angle_deg": 0,
+          "engaging": true,
+          "gingival_height_mm": 2.5
+        },
+        {
+          "sku": "IPD/DC-MR-03",
+          "name": "Straight Multi-unit RB/WB H 3.5",
+          "qty": 2,
+          "angle_deg": 0,
+          "engaging": true,
+          "gingival_height_mm": 3.5
+        },
+        {
+          "sku": "IPD/DC-MR-13",
+          "name": "Multi-unit Abutment  17° RB/WB H 3.5",
+          "qty": 5,
+          "angle_deg": 17,
+          "gingival_height_mm": 3.5
+        }
+      ],
+      "Accessories": [
+        {
+          "sku": "IPD/LL-TM-00",
+          "name": "Multi-unit angled abutment holder",
+          "qty": 254,
+          "angle_deg": 0
+        }
+      ]
+    }
+  }
+}

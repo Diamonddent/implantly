@@ -1,0 +1,1116 @@
+[
+  {
+    "brand": "Astra Tech",
+    "system": "Astra EV",
+    "platforms": {
+      "XS": {
+        "diameter": 3
+      },
+      "S": {
+        "diameter": 3.6
+      },
+      "M": {
+        "diameter": 4.2
+      },
+      "L": {
+        "diameter": 4.8
+      },
+      "XL": {
+        "diameter": 5.4
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "scan_body",
+            "name": "ScanBody EV",
+            "platforms": [
+              "XS",
+              "S",
+              "M",
+              "L",
+              "XL"
+            ],
+            "skus": {
+              "XS": "25605",
+              "S": "25606",
+              "M": "25607",
+              "L": "25608",
+              "XL": "25609"
+            }
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "Printed Model Analog EV",
+            "platforms": [
+              "XS",
+              "S",
+              "M",
+              "L",
+              "XL"
+            ],
+            "skus": {
+              "XS": "25611",
+              "S": "25612",
+              "M": "25613",
+              "L": "25614",
+              "XL": "25615"
+            }
+          },
+          {
+            "type": "ti_base",
+            "name": "TI Design Abutment EV",
+            "note": "Titanium Base for CAD/CAM crowns",
+            "platforms": [
+              "XS",
+              "S",
+              "M",
+              "L",
+              "XL"
+            ],
+            "skus": {
+              "XS": "25571",
+              "S": "25572",
+              "M": "25573",
+              "L": "25574",
+              "XL": "25575"
+            }
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "pickup",
+              "name": "Implant Pick-Up EV",
+              "platforms": [
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL"
+              ],
+              "skus": {
+                "XS": "25512",
+                "S": "25516",
+                "M": "25520",
+                "L": "25524",
+                "XL": "25526"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "Implant Replica EV",
+              "platforms": [
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL"
+              ],
+              "skus": {
+                "XS": "25553",
+                "S": "25554",
+                "M": "25555",
+                "L": "25556",
+                "XL": "25557"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "TI Design Abutment EV",
+              "note": "Titanium Base for screw-retained crowns",
+              "platforms": [
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL"
+              ],
+              "skus": {
+                "XS": "25345",
+                "S": "25351",
+                "M": "25357",
+                "L": "25372",
+                "XL": "25384"
+              }
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "transfer",
+              "name": "Implant Transfer EV",
+              "platforms": [
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL"
+              ],
+              "skus": {
+                "XS": "25529",
+                "S": "25535",
+                "M": "25541",
+                "L": "25547",
+                "XL": "25551"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "Implant Replica EV",
+              "platforms": [
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL"
+              ],
+              "skus": {
+                "XS": "25553",
+                "S": "25554",
+                "M": "25555",
+                "L": "25556",
+                "XL": "25557"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "TI Design Abutment EV",
+              "note": "Titanium Base for screw-retained crowns",
+              "platforms": [
+                "XS",
+                "S",
+                "M",
+                "L",
+                "XL"
+              ],
+              "skus": {
+                "XS": "25345",
+                "S": "25351",
+                "M": "25357",
+                "L": "25372",
+                "XL": "25384"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ti_base_abutments": [
+      {
+        "platform": "XS",
+        "straight": [
+          {
+            "height": 1.5,
+            "diameter": 4,
+            "sku": "68012001"
+          },
+          {
+            "height": 2.5,
+            "diameter": 4,
+            "sku": "68012002"
+          },
+          {
+            "height": 3.5,
+            "diameter": 4,
+            "sku": "68012003"
+          },
+          {
+            "height": 4.5,
+            "diameter": 4,
+            "sku": "68012004"
+          }
+        ],
+        "angled_15": [
+          {
+            "height": 1.5,
+            "diameter": 4.5,
+            "sku": "68012005"
+          },
+          {
+            "height": 2.5,
+            "diameter": 4.5,
+            "sku": "68012006"
+          },
+          {
+            "height": 3.5,
+            "diameter": 4.5,
+            "sku": "68012007"
+          },
+          {
+            "height": 4.5,
+            "diameter": 4.5,
+            "sku": "68012008"
+          }
+        ]
+      },
+      {
+        "platform": "S",
+        "straight": [
+          {
+            "height": 1.5,
+            "diameter": 4.5,
+            "sku": "68012009"
+          },
+          {
+            "height": 2.5,
+            "diameter": 4.5,
+            "sku": "68012010"
+          },
+          {
+            "height": 3.5,
+            "diameter": 4.5,
+            "sku": "68012011"
+          },
+          {
+            "height": 4.5,
+            "diameter": 4.5,
+            "sku": "68012012"
+          }
+        ],
+        "angled_15": [
+          {
+            "height": 1.5,
+            "diameter": 4.5,
+            "sku": "68012017"
+          },
+          {
+            "height": 2.5,
+            "diameter": 4.5,
+            "sku": "68012018"
+          },
+          {
+            "height": 3.5,
+            "diameter": 4.5,
+            "sku": "68012019"
+          },
+          {
+            "height": 4.5,
+            "diameter": 4.5,
+            "sku": "68012020"
+          }
+        ]
+      },
+      {
+        "platform": "M",
+        "straight": [
+          {
+            "height": 1.5,
+            "diameter": 5.5,
+            "sku": "68012042"
+          },
+          {
+            "height": 2.5,
+            "diameter": 5.5,
+            "sku": "68012043"
+          },
+          {
+            "height": 3.5,
+            "diameter": 5.5,
+            "sku": "68012044"
+          },
+          {
+            "height": 4.5,
+            "diameter": 5.5,
+            "sku": "68012045"
+          }
+        ],
+        "angled_15": [
+          {
+            "height": 1.5,
+            "diameter": 5.5,
+            "sku": "68012046"
+          },
+          {
+            "height": 2.5,
+            "diameter": 5.5,
+            "sku": "68012047"
+          },
+          {
+            "height": 3.5,
+            "diameter": 5.5,
+            "sku": "68012048"
+          },
+          {
+            "height": 4.5,
+            "diameter": 5.5,
+            "sku": "68012049"
+          }
+        ]
+      },
+      {
+        "platform": "L",
+        "straight": [
+          {
+            "height": 1.5,
+            "diameter": 7,
+            "sku": "68012052"
+          },
+          {
+            "height": 2.5,
+            "diameter": 7,
+            "sku": "68012053"
+          },
+          {
+            "height": 3.5,
+            "diameter": 7,
+            "sku": "68012054"
+          },
+          {
+            "height": 4.5,
+            "diameter": 7,
+            "sku": "68012055"
+          }
+        ],
+        "angled_15": [
+          {
+            "height": 1.5,
+            "diameter": 5.5,
+            "sku": "68012056"
+          },
+          {
+            "height": 2.5,
+            "diameter": 5.5,
+            "sku": "68012057"
+          },
+          {
+            "height": 3.5,
+            "diameter": 5.5,
+            "sku": "68012058"
+          },
+          {
+            "height": 4.5,
+            "diameter": 5.5,
+            "sku": "68012059"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "brand": "Straumann",
+    "system": "BLX/BLT",
+    "platforms": {
+      "RB": {
+        "diameter": 3.75
+      },
+      "WB": {
+        "diameter": 5
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "scan_body",
+            "name": "BLX Scanbody",
+            "platforms": [
+              "RB",
+              "WB"
+            ],
+            "skus": {
+              "RB": "064.4121",
+              "WB": "064.6121"
+            }
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "BLX Implant Analog",
+            "platforms": [
+              "RB",
+              "WB"
+            ],
+            "skus": {
+              "RB": "064.4105",
+              "WB": "064.6105"
+            }
+          },
+          {
+            "type": "ti_base",
+            "name": "BLX Variobase for Crown",
+            "note": "Titanium Base for CAD/CAM",
+            "platforms": [
+              "RB",
+              "WB"
+            ],
+            "skus": {
+              "RB": "064.4225",
+              "WB": "064.6225"
+            }
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "pickup",
+              "name": "BLX Impression Post Open-tray",
+              "platforms": [
+                "RB",
+                "WB"
+              ],
+              "skus": {
+                "RB": "064.4111",
+                "WB": "064.6111"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "BLX Implant Analog",
+              "platforms": [
+                "RB",
+                "WB"
+              ],
+              "skus": {
+                "RB": "064.4101",
+                "WB": "064.6101"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "BLX Variobase for Crown",
+              "note": "Titanium Base",
+              "platforms": [
+                "RB",
+                "WB"
+              ],
+              "skus": {
+                "RB": "064.4301",
+                "WB": "064.6301"
+              }
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "transfer",
+              "name": "BLX Impression Post Closed-tray",
+              "platforms": [
+                "RB",
+                "WB"
+              ],
+              "skus": {
+                "RB": "064.4112",
+                "WB": "064.6112"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "BLX Implant Analog",
+              "platforms": [
+                "RB",
+                "WB"
+              ],
+              "skus": {
+                "RB": "064.4101",
+                "WB": "064.6101"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "BLX Variobase for Crown",
+              "note": "Titanium Base",
+              "platforms": [
+                "RB",
+                "WB"
+              ],
+              "skus": {
+                "RB": "064.4301",
+                "WB": "064.6301"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "ti_base_abutments": [
+      {
+        "platform": "RB",
+        "gingival_heights": [
+          {
+            "height": 0.75,
+            "sku": "022.0084"
+          },
+          {
+            "height": 1.5,
+            "sku": "022.0085"
+          },
+          {
+            "height": 2.5,
+            "sku": "022.0086"
+          },
+          {
+            "height": 3.5,
+            "sku": "022.0087"
+          }
+        ]
+      },
+      {
+        "platform": "WB",
+        "gingival_heights": [
+          {
+            "height": 0.75,
+            "sku": "022.0093"
+          },
+          {
+            "height": 1.5,
+            "sku": "022.0094"
+          },
+          {
+            "height": 2.5,
+            "sku": "022.0095"
+          },
+          {
+            "height": 3.5,
+            "sku": "022.0096"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "brand": "Nobel Biocare",
+    "system": "NobelActive/NobelParallel",
+    "platforms": {
+      "3.0": {
+        "diameter": 3
+      },
+      "NP": {
+        "diameter": 3.5
+      },
+      "RP": {
+        "diameter": 4.3
+      },
+      "WP": {
+        "diameter": 5
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "scan_body",
+            "name": "Nobel Scan Body",
+            "platforms": [
+              "3.0",
+              "NP",
+              "RP",
+              "WP"
+            ],
+            "skus": {
+              "3.0": "301287",
+              "NP": "37854",
+              "RP": "37855",
+              "WP": "37856"
+            }
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "Nobel Digital Analog",
+            "platforms": [
+              "3.0",
+              "NP",
+              "RP",
+              "WP"
+            ],
+            "skus": {
+              "3.0": "301323",
+              "NP": "301217",
+              "RP": "301218",
+              "WP": "301219"
+            }
+          },
+          {
+            "type": "ti_base",
+            "name": "Nobel Ti-Base",
+            "note": "For CAD/CAM crowns",
+            "platforms": [
+              "3.0",
+              "NP",
+              "RP",
+              "WP"
+            ],
+            "skus": {
+              "3.0": "300486",
+              "NP": "37841",
+              "RP": "37843",
+              "WP": "37845"
+            }
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "pickup",
+              "name": "Nobel Open Tray Coping",
+              "platforms": [
+                "3.0",
+                "NP",
+                "RP",
+                "WP"
+              ],
+              "skus": {
+                "3.0": "302078",
+                "NP": "302081",
+                "RP": "302085",
+                "WP": "302091"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "Nobel Implant Analog",
+              "platforms": [
+                "3.0",
+                "NP",
+                "RP",
+                "WP"
+              ],
+              "skus": {
+                "3.0": "36774",
+                "NP": "36719",
+                "RP": "36721",
+                "WP": "37860"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "Nobel Ti-Base",
+              "note": "For screw-retained crowns",
+              "platforms": [
+                "NP",
+                "RP",
+                "WP"
+              ],
+              "skus": {
+                "NP": "36817",
+                "RP": "36829",
+                "WP": "37831"
+              }
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "transfer",
+              "name": "Nobel Closed Tray Coping",
+              "platforms": [
+                "3.0",
+                "NP",
+                "RP",
+                "WP"
+              ],
+              "skus": {
+                "3.0": "302094",
+                "NP": "302096",
+                "RP": "302099",
+                "WP": "302104"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "Nobel Implant Analog",
+              "platforms": [
+                "3.0",
+                "NP",
+                "RP",
+                "WP"
+              ],
+              "skus": {
+                "3.0": "36774",
+                "NP": "36719",
+                "RP": "36721",
+                "WP": "37860"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "Nobel Ti-Base",
+              "note": "For screw-retained crowns",
+              "platforms": [
+                "NP",
+                "RP",
+                "WP"
+              ],
+              "skus": {
+                "NP": "36817",
+                "RP": "36829",
+                "WP": "37831"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "brand": "MegaGen",
+    "system": "AnyRidge",
+    "platforms": {
+      "S35": {
+        "diameter": 3.5
+      },
+      "R40": {
+        "diameter": 4
+      },
+      "R45": {
+        "diameter": 4.5
+      },
+      "W50": {
+        "diameter": 5
+      },
+      "SW60": {
+        "diameter": 6
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "scan_body",
+            "name": "Scan Abutment AnyRidge",
+            "platforms": [
+              "S35",
+              "R40",
+              "R45",
+              "W50",
+              "SW60"
+            ],
+            "skus": {
+              "S35": "AANISR4009T",
+              "R40": "AANISR4009T",
+              "R45": "AANISR4013T",
+              "W50": "AANISR4013T",
+              "SW60": "AANISR4013T"
+            }
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "Digital RP Analog AnyRidge",
+            "platforms": [
+              "S35",
+              "R40",
+              "R45",
+              "W50",
+              "SW60"
+            ],
+            "skus": {
+              "S35": "CANIAR4009",
+              "R40": "CANIAR4009",
+              "R45": "CANIAR4009",
+              "W50": "CANIAR4009",
+              "SW60": "CANIAR4009"
+            }
+          },
+          {
+            "type": "ti_base",
+            "name": "ZrGEN Ti-Base AnyRidge",
+            "note": "Titanium Base for CAD/CAM zirconia crowns",
+            "platforms": [
+              "S35",
+              "R40",
+              "R45",
+              "W50",
+              "SW60"
+            ],
+            "skus": {
+              "S35": "AANIPR4015.MTN",
+              "R40": "AANIPR4015.MTN",
+              "R45": "AANIPR4515.MTN",
+              "W50": "AANIPR4515.MTN",
+              "SW60": "AANIPR4525N.MTN"
+            }
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "pickup",
+              "name": "Impression Coping Pick-up AnyRidge",
+              "platforms": [
+                "S35",
+                "R40",
+                "R45",
+                "W50",
+                "SW60"
+              ],
+              "skus": {
+                "S35": "AANIPH4012T",
+                "R40": "AANIPH4012T",
+                "R45": "AANIPH4016T",
+                "W50": "AANIPH5012T",
+                "SW60": "AANIPH5016T"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "Lab Analog AnyRidge",
+              "platforms": [
+                "S35",
+                "R40",
+                "R45",
+                "W50",
+                "SW60"
+              ],
+              "skus": {
+                "S35": "AANLAF4055",
+                "R40": "AANLAF4055",
+                "R45": "AANLAF4055",
+                "W50": "AANLAF4055",
+                "SW60": "AALLAF6080"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "Extra EZ Post Abutment AnyRidge",
+              "note": "Screw-retained provisional abutment",
+              "platforms": [
+                "S35",
+                "R40",
+                "R45",
+                "W50",
+                "SW60"
+              ],
+              "skus": {
+                "S35": "ARNTAH4510T",
+                "R40": "ARNTAH4510T",
+                "R45": "ARNTAH4510T",
+                "W50": "ARNTAN4510T",
+                "SW60": "ARNTAN4510T"
+              }
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "transfer",
+              "name": "Impression Coping Transfer AnyRidge",
+              "platforms": [
+                "S35",
+                "R40",
+                "R45",
+                "W50",
+                "SW60"
+              ],
+              "skus": {
+                "S35": "AANITH4012T",
+                "R40": "AANITH4012T",
+                "R45": "AANITH4016T",
+                "W50": "AANITH5012T",
+                "SW60": "AANITH5016T"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "Lab Analog AnyRidge",
+              "platforms": [
+                "S35",
+                "R40",
+                "R45",
+                "W50",
+                "SW60"
+              ],
+              "skus": {
+                "S35": "AANLAF4055",
+                "R40": "AANLAF4055",
+                "R45": "AANLAF4055",
+                "W50": "AANLAF4055",
+                "SW60": "AALLAF6080"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "ZrGEN Ti-Base AnyRidge",
+              "note": "Titanium Base for CAD/CAM zirconia crowns",
+              "platforms": [
+                "S35",
+                "R40",
+                "R45",
+                "W50",
+                "SW60"
+              ],
+              "skus": {
+                "S35": "AANIPR4015.MTN",
+                "R40": "AANIPR4015.MTN",
+                "R45": "AANIPR4515.MTN",
+                "W50": "AANIPR4515.MTN",
+                "SW60": "AANIPR4525N.MTN"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "brand": "ROOTT",
+    "system": "ROOTT R Viper Edition",
+    "platforms": {
+      "R38": {
+        "diameter": 3.8
+      },
+      "R42": {
+        "diameter": 4.2
+      },
+      "R48": {
+        "diameter": 4.8
+      }
+    },
+    "workflow": {
+      "digital": {
+        "components": [
+          {
+            "type": "scan_body",
+            "name": "Scan Body ROOTT R",
+            "platforms": [
+              "R38",
+              "R42",
+              "R48"
+            ],
+            "skus": {
+              "R38": "SB-R35",
+              "R42": "SB-R45",
+              "R48": "SB-R45"
+            }
+          },
+          {
+            "type": "printed_model_analog",
+            "name": "Digital RP Analog ROOTT R",
+            "platforms": [
+              "R38",
+              "R42",
+              "R48"
+            ],
+            "skus": {
+              "R38": "ANAD-R",
+              "R42": "ANAD-R",
+              "R48": "ANAD-R"
+            }
+          },
+          {
+            "type": "ti_base",
+            "name": "Ti-Base ROOTT R (Hex)",
+            "note": "Titanium Base for hybrid zirconia abutments",
+            "platforms": [
+              "R38",
+              "R42",
+              "R48"
+            ],
+            "skus": {
+              "R38": "TB-R4005H",
+              "R42": "TB-R4015H",
+              "R48": "TB-R4515N"
+            }
+          }
+        ]
+      },
+      "conventional": {
+        "open_tray": {
+          "components": [
+            {
+              "type": "pickup",
+              "name": "Open Tray Coping ROOTT",
+              "platforms": [
+                "R38",
+                "R42",
+                "R48"
+              ],
+              "skus": {
+                "R38": "IOA38",
+                "R42": "IOA45",
+                "R48": "IOA45"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "Lab Analog ROOTT R",
+              "platforms": [
+                "R38",
+                "R42",
+                "R48"
+              ],
+              "skus": {
+                "R38": "ANAR",
+                "R42": "ANAR",
+                "R48": "ANAR"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "Ti-Base ROOTT R (Hex)",
+              "note": "Titanium Base for screw-retained crowns",
+              "platforms": [
+                "R38",
+                "R42",
+                "R48"
+              ],
+              "skus": {
+                "R38": "TB-R4005H",
+                "R42": "TB-R4015H",
+                "R48": "TB-R4515N"
+              }
+            }
+          ]
+        },
+        "closed_tray": {
+          "components": [
+            {
+              "type": "transfer",
+              "name": "Closed Tray Coping ROOTT",
+              "platforms": [
+                "R38",
+                "R42",
+                "R48"
+              ],
+              "skus": {
+                "R38": "ICA38",
+                "R42": "ICA45",
+                "R48": "ICA45"
+              }
+            },
+            {
+              "type": "analog",
+              "name": "Lab Analog ROOTT R",
+              "platforms": [
+                "R38",
+                "R42",
+                "R48"
+              ],
+              "skus": {
+                "R38": "ANAR",
+                "R42": "ANAR",
+                "R48": "ANAR"
+              }
+            },
+            {
+              "type": "ti_base",
+              "name": "Ti-Base ROOTT R (Hex)",
+              "note": "Titanium Base for screw-retained crowns",
+              "platforms": [
+                "R38",
+                "R42",
+                "R48"
+              ],
+              "skus": {
+                "R38": "TB-R4005H",
+                "R42": "TB-R4015H",
+                "R48": "TB-R4515N"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+]
