@@ -19,7 +19,11 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { listOrders } from "@/lib/store";
+import { listOrders, orderTotals } from "@/lib/store";
+import { money, toDisplay, fromDisplay, getCurrency } from "@/lib/locale";
+import { orderMessage, waLink } from "@/lib/notify";
+import { OrderActions } from "@/components/OrderActions";
+import { LocaleSwitch } from "@/components/LocaleSwitch";
 import {
   readAdmin,
   updateAdmin,
@@ -47,9 +51,8 @@ const TABS = [
   { id: "settings", label: "Settings", icon: SettingsIcon },
 ];
 
-const money = (n) => `$${(Math.round(Number(n || 0) * 100) / 100).toLocaleString("en-US")}`;
-const orderTotal = (o) =>
-  Math.max(0, o.items.reduce((s, i) => s + (Number(i.price) || 0) * (i.qty || 1), 0) - (o.coupon?.discount || 0));
+const orderTotal = (o) => orderTotals(o).total;
+const fromD = (v) => (v === "" ? "" : Math.round(fromDisplay(v) * 10000) / 10000);
 
 export default function AdminPage() {
   const [authed, setAuthed] = useState(false);
@@ -94,12 +97,15 @@ export default function AdminPage() {
               </div>
             </div>
           </div>
+          <div className="flex items-center gap-3">
+          <LocaleSwitch />
           <button
             onClick={() => { sessionStorage.removeItem(SESSION); setAuthed(false); }}
             className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
             <LogOutIcon className="w-4 h-4" /> Sign out
           </button>
+          </div>
         </div>
       </header>
 
@@ -265,6 +271,13 @@ function Overview({ orders, db }) {
 function Orders({ orders, db }) {
   const [filter, setFilter] = useState("");
   const [open, setOpen] = useState(null);
+  const setLot = (o, k, lot) => {
+    const raw = JSON.parse(localStorage.getItem("implantly_db") || "{}");
+    const ord = (raw.orders || []).find((x) => x.orderId === o.orderId);
+    if (!ord) return;
+    ord.items[k].lot = lot.trim();
+    localStorage.setItem("implantly_db", JSON.stringify(raw));
+  };
   const list = orders.filter((o) => !filter || statusOf(db, o) === filter);
 
   const setStatus = (o, status, extra = {}) => {
@@ -275,6 +288,22 @@ function Orders({ orders, db }) {
       d.orderStatus[o.orderId] = cur;
     });
     toast.success(`${o.orderId} → ${status}`);
+    const cl = (readAdmin().clinics || []).find((c) => c.id === o.clinic?.id);
+    if (cl?.phone && window.confirm(`Send this update to ${cl.name} on WhatsApp?`)) {
+      window.open(waLink(cl.phone, orderMessage(o.orderId, "update").body), "_blank");
+    }
+  };
+  const exportCsv = () => {
+    const rows = [["Order", "Date", "Clinic", "Case", "Status", "Payment", "Subtotal", "Discount", "VAT", "Total", "Currency"]];
+    orders.forEach((o) => {
+      const t = orderTotals(o);
+      rows.push([o.orderId, o.createdAt.slice(0, 10), o.clinic?.name || "", o.caseRef || "", statusOf(db, o), o.payment || "", toDisplay(t.subtotal), toDisplay(t.discount), toDisplay(t.vat), toDisplay(t.total), getCurrency()]);
+    });
+    const csv = "\ufeff" + rows.map((r) => r.map((x) => `"${String(x).replace(/"/g, '""')}"`).join(",")).join("\n");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    a.download = `implantly-orders-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
   };
 
   return (
@@ -283,10 +312,13 @@ function Orders({ orders, db }) {
         <h1 className="text-3xl md:text-5xl font-semibold tracking-tight">
           <span className="gradient-text">Orders</span>
         </h1>
-        <select className={cn(input, "w-auto")} value={filter} onChange={(e) => setFilter(e.target.value)}>
+        <div className="flex gap-2 items-center">
+        <button className={btnGhost} onClick={exportCsv}><DownloadIcon className="w-3.5 h-3.5 inline" /> Export Excel (CSV)</button>
+        <select className={input} style={{ width: "auto" }} value={filter} onChange={(e) => setFilter(e.target.value)}>
           <option value="">All statuses</option>
           {ORDER_STATUSES.map((s) => <option key={s}>{s}</option>)}
         </select>
+        </div>
       </div>
       {list.length === 0 && (
         <div className="surface-card p-8 text-center text-muted-foreground text-sm">
@@ -306,12 +338,14 @@ function Orders({ orders, db }) {
                   <div className="text-xs text-muted-foreground">
                     {o.clinic?.name ? `${o.clinic.name} · ` : ""}{new Date(o.createdAt).toLocaleString()} · {(o.brands || []).join(", ")} · {o.items.length} items
                     {meta.tracking ? ` · ${meta.courier || ""} ${meta.tracking}` : ""}
+                    {o.payment ? ` · ${o.payment}` : ""}{o.caseRef ? ` · ${o.caseRef}` : ""}
                   </div>
                 </div>
                 <div className="font-mono font-semibold">{money(orderTotal(o))}</div>
                 <StatusPill s={st} />
                 <select
-                  className={cn(input, "w-auto")}
+                  className={input}
+                  style={{ width: "auto" }}
                   value={st}
                   onChange={(e) => {
                     const s = e.target.value;
@@ -337,8 +371,15 @@ function Orders({ orders, db }) {
                         <div className="text-sm font-medium truncate">{i.name}</div>
                         <div className="text-[11px] font-mono text-muted-foreground">{i.category} · {i.sku}</div>
                       </div>
+                      <input
+                        className={cn(input, "font-mono")}
+                        style={{ maxWidth: 120 }}
+                        placeholder="Lot / batch"
+                        defaultValue={i.lot || ""}
+                        onBlur={(e) => setLot(o, k, e.target.value)}
+                      />
                       <div className="font-mono text-sm">×{i.qty || 1}</div>
-                      <div className="font-mono text-sm w-16 text-right">{money(i.price)}</div>
+                      <div className="font-mono text-sm text-right" style={{ minWidth: 72 }}>{money(i.price)}</div>
                     </div>
                   ))}
                   {o.coupon && (
@@ -346,6 +387,11 @@ function Orders({ orders, db }) {
                       Coupon {o.coupon.code}: −{money(o.coupon.discount)}
                     </div>
                   )}
+                  <div className="text-xs text-muted-foreground text-right">
+                    VAT {orderTotals(o).vatRate}%: {money(orderTotals(o).vat)} · Total {money(orderTotal(o))}
+                  </div>
+                  {o.note && <div className="text-xs text-muted-foreground">Note: {o.note}</div>}
+                  <OrderActions orderId={o.orderId} who="admin" className="justify-end" />
                 </div>
               )}
             </div>
@@ -362,15 +408,15 @@ function Prices({ db }) {
   const [newSku, setNewSku] = useState("");
   const [newSkuPrice, setNewSkuPrice] = useState("");
 
-  const setCat = (c, v) => updateAdmin((d) => { if (v === "") delete d.categoryPrices[c]; else d.categoryPrices[c] = Number(v); });
-  const setBrand = (b, v) => updateAdmin((d) => { if (v === "") delete d.brandImplantPrices[b]; else d.brandImplantPrices[b] = Number(v); });
+  const setCat = (c, v) => updateAdmin((d) => { if (v === "") delete d.categoryPrices[c]; else d.categoryPrices[c] = fromD(v); });
+  const setBrand = (b, v) => updateAdmin((d) => { if (v === "") delete d.brandImplantPrices[b]; else d.brandImplantPrices[b] = fromD(v); });
 
   const parse = (text) => {
     const rows = text
       .split(/\r?\n/)
       .map((l) => l.split(/[,;\t]/).map((x) => x.trim().replace(/^"|"$/g, "")))
       .filter((a) => a[0] && a.length >= 2 && !isNaN(parseFloat(a[a.length - 1])))
-      .map((a) => ({ sku: a[0], price: parseFloat(a[a.length - 1]), old: db.skuPrices[a[0]] }));
+      .map((a) => ({ sku: a[0], price: fromD(parseFloat(a[a.length - 1])), old: db.skuPrices[a[0]] }));
     if (!rows.length) toast.error("No SKU,price lines found");
     setPreview(rows);
   };
@@ -382,9 +428,9 @@ function Prices({ db }) {
   };
   const download = () => {
     const lines = ["Type,Key,Price"];
-    Object.keys(DEFAULT_CATEGORY_PRICES).forEach((c) => lines.push(`Category,"${c}",${db.categoryPrices[c] ?? DEFAULT_CATEGORY_PRICES[c]}`));
-    BRANDS.forEach((b) => db.brandImplantPrices[b] != null && lines.push(`Brand implant,"${b}",${db.brandImplantPrices[b]}`));
-    Object.entries(db.skuPrices).forEach(([s, p]) => lines.push(`SKU,"${s}",${p}`));
+    Object.keys(DEFAULT_CATEGORY_PRICES).forEach((c) => lines.push(`Category,"${c}",${toDisplay(db.categoryPrices[c] ?? DEFAULT_CATEGORY_PRICES[c])}`));
+    BRANDS.forEach((b) => db.brandImplantPrices[b] != null && lines.push(`Brand implant,"${b}",${toDisplay(db.brandImplantPrices[b])}`));
+    Object.entries(db.skuPrices).forEach(([s, p]) => lines.push(`SKU,"${s}",${toDisplay(p)}`));
     const a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob(["\ufeff" + lines.join("\n")], { type: "text/csv" }));
     a.download = "implantly-prices.csv";
@@ -399,7 +445,7 @@ function Prices({ db }) {
             <span className="gradient-text">Prices</span>
           </h1>
           <p className="text-muted-foreground text-sm">
-            SKU price wins over brand price, brand price wins over category price. Changes show in the Case Builder at once.
+            SKU price wins over brand price, brand price wins over category price. Changes show in the Case Builder at once. Prices are entered in {getCurrency()}, excluding VAT.
           </p>
         </div>
         <button onClick={download} className={cn(btnGhost, "flex items-center gap-2")}>
@@ -418,7 +464,7 @@ function Prices({ db }) {
                   className={cn(input, "font-mono")}
                   style={{ width: 112 }}
                   type="number"
-                  defaultValue={db.categoryPrices[c] ?? def}
+                  defaultValue={toDisplay(db.categoryPrices[c] ?? def)}
                   onBlur={(e) => { setCat(c, e.target.value); toast.success(`${c} saved`); }}
                 />
               </div>
@@ -437,7 +483,7 @@ function Prices({ db }) {
                     className={cn(input, "font-mono")}
                     type="number"
                     placeholder="category"
-                    defaultValue={db.brandImplantPrices[b] ?? ""}
+                    defaultValue={db.brandImplantPrices[b] != null ? toDisplay(db.brandImplantPrices[b]) : ""}
                     onBlur={(e) => { setBrand(b, e.target.value); toast.success(`${b} saved`); }}
                   />
                 </div>
@@ -497,7 +543,7 @@ function Prices({ db }) {
             className={cn(btn, "flex items-center gap-1")}
             onClick={() => {
               if (!newSku.trim() || newSkuPrice === "") return toast.error("Enter SKU and price");
-              updateAdmin((d) => (d.skuPrices[newSku.trim()] = Number(newSkuPrice)));
+              updateAdmin((d) => (d.skuPrices[newSku.trim()] = fromD(newSkuPrice)));
               setNewSku(""); setNewSkuPrice("");
               toast.success("SKU price saved");
             }}
@@ -518,6 +564,41 @@ function Prices({ db }) {
           ))}
         </div>
       </div>
+      <StockBox db={db} />
+    </div>
+  );
+}
+
+function StockBox({ db }) {
+  const [sku, setSku] = useState("");
+  const list = Object.keys(db.outOfStock || {});
+  return (
+    <div className="surface-card p-6">
+      <h3 className="text-sm font-mono uppercase tracking-widest text-muted-foreground mb-2">Stock</h3>
+      <p className="text-xs text-muted-foreground mb-4">SKUs marked out of stock show an Out of stock warning in the doctor&apos;s kit.</p>
+      <div className="flex flex-wrap gap-2 mb-4">
+        <input className={cn(input, "font-mono")} placeholder="SKU" style={{ maxWidth: 220 }} value={sku} onChange={(e) => setSku(e.target.value)} />
+        <button
+          className={btn}
+          onClick={() => {
+            if (!sku.trim()) return;
+            updateAdmin((d) => ((d.outOfStock = d.outOfStock || {})[sku.trim()] = true));
+            setSku("");
+            toast.success("Marked out of stock");
+          }}
+        >
+          Mark out of stock
+        </button>
+      </div>
+      {list.length === 0 && <p className="text-sm text-muted-foreground">Everything is in stock.</p>}
+      <div className="space-y-2">
+        {list.map((s) => (
+          <div key={s} className="flex items-center gap-3 p-2 rounded-lg bg-secondary/40 border border-border/40">
+            <span className="flex-1 font-mono text-sm">{s}</span>
+            <button className={btnGhost} onClick={() => updateAdmin((d) => delete d.outOfStock[s])}>Back in stock</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -534,7 +615,7 @@ function Offers({ db }) {
   const save = () => {
     if (!f.name.trim()) return toast.error("Give the offer a name");
     if (f.scope === "order" && !f.code.trim()) return toast.error("Whole-order discounts need a coupon code");
-    updateAdmin((d) => d.offers.push({ ...f, id: Date.now(), value: Number(f.value), min: Number(f.min) || 0, code: f.code.trim().toUpperCase() }));
+    updateAdmin((d) => d.offers.push({ ...f, id: Date.now(), value: f.type === "percent" ? Number(f.value) : fromD(f.value), min: fromD(Number(f.min) || 0) || 0, code: f.code.trim().toUpperCase() }));
     setF(blankOffer);
     toast.success("Offer created");
   };
@@ -638,7 +719,14 @@ function Settings({ db }) {
       <div className="surface-card p-6 space-y-3">
         <div><div className={label}>Company name</div><input className={input} value={s.company} onChange={(e) => setS({ ...s, company: e.target.value })} /></div>
         <div><div className={label}>Order notification email</div><input className={input} value={s.email} onChange={(e) => setS({ ...s, email: e.target.value })} /></div>
-        <div><div className={label}>WhatsApp number</div><input className={input} value={s.phone} onChange={(e) => setS({ ...s, phone: e.target.value })} /></div>
+        <div><div className={label}>WhatsApp number (with country code, e.g. 9665…)</div><input className={input} value={s.phone} onChange={(e) => setS({ ...s, phone: e.target.value })} /></div>
+        <div className="grid sm:grid-cols-2 gap-3">
+          <div><div className={label}>VAT %</div><input className={input} type="number" value={s.vat} onChange={(e) => setS({ ...s, vat: e.target.value })} /></div>
+          <div><div className={label}>VAT number</div><input className={input} value={s.vatNo} onChange={(e) => setS({ ...s, vatNo: e.target.value })} /></div>
+          <div><div className={label}>CR number</div><input className={input} value={s.cr} onChange={(e) => setS({ ...s, cr: e.target.value })} /></div>
+          <div><div className={label}>IBAN (for bank transfer)</div><input className={input} value={s.iban} onChange={(e) => setS({ ...s, iban: e.target.value })} /></div>
+        </div>
+        <div><div className={label}>Address (on invoice)</div><input className={input} value={s.address} onChange={(e) => setS({ ...s, address: e.target.value })} /></div>
         <button className={btn} onClick={() => { updateAdmin((d) => (d.settings = s)); toast.success("Saved"); }}>Save</button>
       </div>
       <div className="surface-card p-6 space-y-3">
@@ -666,7 +754,7 @@ function genPassword() {
 }
 
 function Clinics({ db, orders }) {
-  const blank = { name: "", contact: "", phone: "", username: "", password: genPassword() };
+  const blank = { name: "", contact: "", phone: "", email: "", discount: "", username: "", password: genPassword() };
   const [f, setF] = useState(blank);
   const [shown, setShown] = useState(null);
   const clinics = db.clinics || [];
@@ -717,6 +805,8 @@ function Clinics({ db, orders }) {
           <div><div className={label}>Clinic or company name</div><input className={input} value={f.name} onChange={(e) => set("name", e.target.value)} /></div>
           <div><div className={label}>Doctor / contact person</div><input className={input} value={f.contact} onChange={(e) => set("contact", e.target.value)} /></div>
           <div><div className={label}>Phone / WhatsApp</div><input className={input} value={f.phone} onChange={(e) => set("phone", e.target.value)} /></div>
+          <div><div className={label}>Email</div><input className={input} value={f.email} onChange={(e) => set("email", e.target.value)} /></div>
+          <div><div className={label}>Special discount % (this clinic)</div><input className={input} type="number" value={f.discount} onChange={(e) => set("discount", e.target.value)} /></div>
           <div><div className={label}>User ID</div><input className={cn(input, "font-mono")} value={f.username} onChange={(e) => set("username", e.target.value)} autoCapitalize="none" /></div>
           <div>
             <div className={label}>Password</div>
@@ -737,6 +827,15 @@ function Clinics({ db, orders }) {
                   {c.username}{c.contact ? ` · ${c.contact}` : ""}{c.phone ? ` · ${c.phone}` : ""} · {orders.filter((o) => o.clinic?.id === c.id).length} orders
                 </div>
               </div>
+              <button
+                className={btnGhost}
+                onClick={() => {
+                  const v = window.prompt(`Special discount % for ${c.name}`, c.discount || "0");
+                  if (v !== null) edit(c.id, (x) => (x.discount = Number(v) || 0));
+                }}
+              >
+                Discount {c.discount ? `${c.discount}%` : "0%"}
+              </button>
               <button
                 className={btnGhost}
                 onClick={() => {

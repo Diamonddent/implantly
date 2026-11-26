@@ -44,8 +44,10 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { saveCase, saveOrder } from "@/lib/store";
-import { checkCoupon, currentClinic } from "@/lib/admin-store";
+import { checkCoupon, currentClinic, readAdmin } from "@/lib/admin-store";
+import { money, totals, PAYMENT_METHODS } from "@/lib/locale";
 import { ClinicLoginModal } from "@/components/ClinicLogin";
+import { OrderActions } from "@/components/OrderActions";
 import {
   SURGICAL_CATALOG,
   resolveSurgicalCatalog,
@@ -2224,7 +2226,7 @@ function F({ item: e, toothCase: l }) {
         </div>
       </div>
       <div className="font-mono text-sm mr-2">×{e.qty}</div>
-      <div className="font-mono text-sm w-16 text-right">${e.price}</div>
+      <div className="font-mono text-sm text-right" style={{ minWidth: 64 }}>{money(e.price)}{e.outOfStock && <div className="text-[10px] text-destructive">Out of stock</div>}</div>
       {m && (
         <Link
           href={m}
@@ -2258,7 +2260,7 @@ function E({ toothCase: e, kit: l }) {
             {e.design ? ` \xb7 ${e.design}` : ""}
           </div>
         </div>
-        <div className="ml-auto font-mono text-sm font-semibold">${a}</div>
+        <div className="ml-auto font-mono text-sm font-semibold">{money(a)}</div>
       </div>
       <div className="space-y-2">
         {l.map((l) => (
@@ -2286,7 +2288,7 @@ function D({ toothCases: e, kitsByTooth: l, grandTotal: a, onContinue: c }) {
       toast.error(r.reason);
     }
   };
-  let net = cp ? Math.max(0, Math.round((a - cp.discount) * 100) / 100) : a;
+  let tt = totals(a, cp ? cp.discount : 0);
   return (
     <div className="surface-card p-6 sticky top-24">
       <h3 className="text-sm font-mono uppercase tracking-widest text-muted-foreground mb-4">
@@ -2305,7 +2307,7 @@ function D({ toothCases: e, kitsByTooth: l, grandTotal: a, onContinue: c }) {
                 <div className="w-2 h-2 rounded-full" />
                 Tooth #{e.tooth}
               </dt>
-              <dd className="font-mono">${a}</dd>
+              <dd className="font-mono">{money(a)}</dd>
             </div>
           );
         })}
@@ -2328,13 +2330,17 @@ function D({ toothCases: e, kitsByTooth: l, grandTotal: a, onContinue: c }) {
       {cp && (
         <div className="flex justify-between text-xs mb-2">
           <span className="text-muted-foreground">Discount · {cp.name}</span>
-          <span className="font-mono text-primary">−${cp.discount}</span>
+          <span className="font-mono text-primary">−{money(cp.discount)}</span>
         </div>
       )}
+      <div className="flex justify-between text-xs mb-2">
+        <span className="text-muted-foreground">VAT {tt.vatRate}%</span>
+        <span className="font-mono">{money(tt.vat)}</span>
+      </div>
       <div className="flex justify-between items-baseline">
         <span className="text-sm text-muted-foreground">Total</span>
         <span className="text-2xl font-mono font-semibold gradient-text">
-          ${net}
+          {money(tt.total)}
         </span>
       </div>
       <button
@@ -2377,6 +2383,50 @@ function U({
     </div>
   );
 }
+function CheckoutBox({ subtotal }) {
+  let coupon = null;
+  try { coupon = JSON.parse(localStorage.getItem("implantly_coupon")); } catch {}
+  let tt = totals(subtotal, coupon ? coupon.discount : 0);
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem("implantly_checkout")) || {}; } catch {}
+  let [pay, setPay] = useState(saved.payment || PAYMENT_METHODS[0]);
+  let [ref, setRef] = useState(saved.caseRef || "");
+  let [note, setNote] = useState(saved.note || "");
+  useEffect(() => {
+    localStorage.setItem("implantly_checkout", JSON.stringify({ payment: pay, caseRef: ref, note }));
+  }, [pay, ref, note]);
+  let field = "w-full px-3 py-2 rounded-lg border border-border bg-background text-sm focus:outline-none focus:border-primary";
+  return (
+    <div className="border-t border-border pt-4 space-y-4">
+      <div className="grid sm:grid-cols-2 gap-3">
+        <div>
+          <div className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground mb-1">Payment method</div>
+          <select className={field} value={pay} onChange={(e) => setPay(e.target.value)}>
+            {PAYMENT_METHODS.map((m) => (
+              <option key={m} value={m}>{m}</option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <div className="text-[11px] font-mono uppercase tracking-widest text-muted-foreground mb-1">Case reference (no patient name)</div>
+          <input className={field} value={ref} onChange={(e) => setRef(e.target.value)} placeholder="e.g. Case 24-118" />
+        </div>
+      </div>
+      <input className={field} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Delivery note (optional)" />
+      <dl className="space-y-1 text-sm">
+        <div className="flex justify-between"><dt className="text-muted-foreground">Subtotal</dt><dd className="font-mono">{money(tt.subtotal)}</dd></div>
+        {tt.discount > 0 && (
+          <div className="flex justify-between"><dt className="text-muted-foreground">Discount · {coupon.name}</dt><dd className="font-mono text-primary">−{money(tt.discount)}</dd></div>
+        )}
+        <div className="flex justify-between"><dt className="text-muted-foreground">VAT {tt.vatRate}%</dt><dd className="font-mono">{money(tt.vat)}</dd></div>
+      </dl>
+      <div className="flex justify-between pt-3 text-base font-medium border-t border-border">
+        <span>Grand Total</span>
+        <span className="font-mono gradient-text text-xl">{money(tt.total)}</span>
+      </div>
+    </div>
+  );
+}
 function X({ toothCases: e, kitsByTooth: l, grandTotal: a, onConfirm: c }) {
   return (
     <div className="animate-fade-in max-w-3xl mx-auto">
@@ -2386,10 +2436,7 @@ function X({ toothCases: e, kitsByTooth: l, grandTotal: a, onConfirm: c }) {
           Review all items. Click <PencilIcon className="inline w-3 h-3" /> to
           swap any item in the marketplace.
         </p>
-        <div className="flex justify-between pt-4 text-base font-medium border-t border-border">
-          <span>Grand Total</span>
-          <span className="font-mono gradient-text text-xl">${a}</span>
-        </div>
+        <CheckoutBox subtotal={a} />
         <div className="grid sm:grid-cols-2 gap-3 mt-6">
           <button
             onClick={c}
@@ -2446,9 +2493,10 @@ function Y({ orderId: e, onStartNewCase: l }) {
           </div>
         ))}
       </div>
+      <OrderActions orderId={e} who="clinic" className="mt-8 justify-center" />
       <button
         onClick={l}
-        className="mt-8 py-2.5 px-6 rounded-lg border border-border text-sm font-medium hover:bg-secondary transition-colors"
+        className="mt-4 py-2.5 px-6 rounded-lg border border-border text-sm font-medium hover:bg-secondary transition-colors"
       >
         Start new case
       </button>
@@ -2594,6 +2642,13 @@ function Q() {
           ),
           items: e,
           clinic: clinicSession,
+          ...(() => {
+            try {
+              return JSON.parse(localStorage.getItem("implantly_checkout")) || {};
+            } catch {
+              return {};
+            }
+          })(),
           coupon: (() => {
             try {
               return JSON.parse(localStorage.getItem("implantly_coupon"));
@@ -2603,6 +2658,7 @@ function Q() {
           })(),
         });
       localStorage.removeItem("implantly_coupon");
+      localStorage.removeItem("implantly_checkout");
       b(l.orderId);
     } catch {
       b("MD-" + Math.random().toString(36).slice(2, 8).toUpperCase());

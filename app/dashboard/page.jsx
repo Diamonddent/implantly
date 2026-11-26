@@ -12,6 +12,8 @@ import {
 import { useState, useEffect } from "react";
 import { SURGICAL_CATALOG } from "@/lib/surgical-catalog";
 import { cn } from "@/lib/utils";
+import { listOrders, orderTotals } from "@/lib/store";
+import { money } from "@/lib/locale";
 
 export default function DashboardPage() {
   let [e, r] = useState("all");
@@ -27,25 +29,34 @@ export default function DashboardPage() {
       let e = {};
       b.forEach((a) => {
         let t = SURGICAL_CATALOG.filter((e) => e.brand === a);
+        let all = listOrders();
+        let mineB = all.filter((o) => (o.brands || []).includes(a));
+        let share = (o) => orderTotals(o).total / Math.max(1, (o.brands || []).length);
+        let now = Date.now();
+        let inDays = (o, from, to) => {
+          let d = (now - new Date(o.createdAt).getTime()) / 86400000;
+          return d >= from && d < to;
+        };
+        let last = mineB.filter((o) => inDays(o, 0, 30)).length;
+        let prev = mineB.filter((o) => inDays(o, 30, 60)).length;
+        let rev = mineB.reduce((s, o) => s + share(o), 0);
         e[a] = {
           brand: a,
-          totalOrders: Math.floor(Math.random() * 500) + 100,
-          totalRevenue: Math.floor(Math.random() * 100000) + 50000,
+          totalOrders: mineB.length,
+          totalRevenue: Math.round(rev * 100) / 100,
           popularProducts: t.slice(0, 3).map((e) => e.system),
-          avgOrderValue: Math.floor(Math.random() * 2000) + 1000,
-          growthRate: Math.floor(Math.random() * 40) - 10,
+          avgOrderValue: mineB.length ? Math.round((rev / mineB.length) * 100) / 100 : 0,
+          growthRate: prev ? Math.round(((last - prev) / prev) * 100) : last ? 100 : 0,
           systemsCount: t.length,
-          recentOrders: Array.from(
-            {
-              length: 5,
-            },
-            (e, a) => ({
-              orderId: `MD-${Math.random().toString(36).substr(2, 6).toUpperCase()}`,
-              date: new Date(Date.now() - a * 86400000).toISOString(),
-              amount: Math.floor(Math.random() * 5000) + 1000,
-              items: Math.floor(Math.random() * 10) + 3,
-            }),
-          ),
+          recentOrders: mineB
+            .slice(-5)
+            .reverse()
+            .map((o) => ({
+              orderId: o.orderId,
+              date: o.createdAt,
+              amount: share(o),
+              items: o.items.reduce((s, i) => s + (i.qty || 1), 0),
+            })),
         };
       });
       g(e);
@@ -150,7 +161,7 @@ export default function DashboardPage() {
                 </div>
               </div>
               <div className="text-3xl font-bold mb-1">
-                ${y?.totalRevenue.toLocaleString()}
+                {money(y?.totalRevenue)}
               </div>
               <div className="text-sm text-muted-foreground">Total Revenue</div>
             </div>
@@ -226,7 +237,7 @@ export default function DashboardPage() {
                         </div>
                       </div>
                       <div className="text-sm font-bold text-green-600">
-                        ${e.amount.toLocaleString()}
+                        {money(e.amount)}
                       </div>
                     </div>
                   ))}
@@ -253,7 +264,7 @@ export default function DashboardPage() {
                         <div>
                           Revenue:{" "}
                           <span className="font-semibold text-foreground">
-                            ${p[e]?.totalRevenue.toLocaleString()}
+                            {money(p[e]?.totalRevenue)}
                           </span>
                         </div>
                         <div>

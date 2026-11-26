@@ -9,15 +9,35 @@ import {
   CircleCheckBig as CircleCheckBigIcon,
   MapPin as MapPinIcon,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { getOrderTracking } from "@/lib/store";
+import { getOrderTracking, listOrders, reorder, orderTotals } from "@/lib/store";
+import { currentClinic, clinicLogout } from "@/lib/admin-store";
+import { money } from "@/lib/locale";
+import { OrderActions } from "@/components/OrderActions";
 
 export default function TrackingPage() {
   let [e, s] = useState("");
   let [x, u] = useState(null);
   let [h, p] = useState(false);
   let [b, g] = useState("");
+  let [me, setMe] = useState(null);
+  let [mine, setMine] = useState([]);
+  let loadMine = () => {
+    let c = currentClinic();
+    setMe(c);
+    setMine(c ? listOrders().filter((o) => o.clinic?.id === c.id).reverse() : []);
+  };
+  useEffect(() => {
+    loadMine();
+    let id = new URLSearchParams(location.search).get("id");
+    if (id) {
+      s(id);
+      let t = getOrderTracking(id);
+      if (t) u(t);
+    }
+  }, []);
   let v = async () => {
     if (!e.trim()) {
       g("Please enter an order ID");
@@ -222,6 +242,65 @@ export default function TrackingPage() {
                 Enter an order ID above to track your surgical kit delivery
                 status.
               </p>
+            </div>
+          </div>
+        )}
+        {me && (
+          <div className="max-w-4xl mx-auto mt-12">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold">
+                My <span className="gradient-text">Orders</span> · {me.name}
+              </h2>
+              <button
+                className="text-sm text-muted-foreground hover:text-foreground"
+                onClick={() => {
+                  clinicLogout();
+                  loadMine();
+                }}
+              >
+                Sign out
+              </button>
+            </div>
+            {mine.length === 0 && <div className="surface-card p-6 text-sm text-muted-foreground text-center">No orders yet.</div>}
+            <div className="space-y-3">
+              {mine.map((o) => {
+                let t = getOrderTracking(o.orderId);
+                return (
+                  <div key={o.orderId} className="surface-card p-5 flex flex-wrap items-center gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="font-mono font-bold">{o.orderId}</div>
+                      <div className="text-xs text-muted-foreground">
+                        {new Date(o.createdAt).toLocaleDateString("en-GB")} · {o.items.length} items{o.caseRef ? ` · ${o.caseRef}` : ""} · <span className="capitalize">{t?.status}</span>
+                      </div>
+                    </div>
+                    <div className="font-mono font-semibold">{money(orderTotals(o).total)}</div>
+                    <button
+                      className="px-3 py-2 rounded-lg border border-border text-xs font-semibold hover:bg-secondary"
+                      onClick={() => {
+                        s(o.orderId);
+                        u(t);
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }}
+                    >
+                      Track
+                    </button>
+                    <button
+                      className="px-3 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-semibold"
+                      onClick={() => {
+                        if (!window.confirm("Place the same order again at today's prices?")) return;
+                        let n = reorder(o.orderId);
+                        if (n) {
+                          toast.success(`Reordered as ${n.orderId}`);
+                          loadMine();
+                        }
+                      }}
+                    >
+                      Reorder
+                    </button>
+                    <OrderActions orderId={o.orderId} />
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

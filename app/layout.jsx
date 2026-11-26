@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import { Navbar } from "@/components/Navbar";
 import { PwaRegister } from "@/components/PwaRegister";
+import { Localizer } from "@/components/Localizer";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
         {children}
         <Toaster richColors position="top-right" />
         <PwaRegister />
+        <Localizer />
       </body>
     </html>
   );

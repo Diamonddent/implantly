@@ -13,6 +13,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { LocaleSwitch } from "@/components/LocaleSwitch";
 
 let m = [
   {
@@ -103,6 +104,7 @@ export function Navbar() {
           })}
         </nav>
         <div className="flex items-center gap-1.5">
+          <LocaleSwitch />
           <Link
             href="/marketplace"
             className="relative p-2 rounded-lg hover:bg-secondary/60 text-muted-foreground hover:text-foreground transition-all"
