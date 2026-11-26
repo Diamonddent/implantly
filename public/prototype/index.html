@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Implantly — Client Prototype</title>
+<meta name="theme-color" content="#0b0f17">
+<link rel="icon" href="../icons/icon-192.png">
+<style>
+:root{--bg:#0b0f17;--card:#111827;--card2:#0f1623;--bd:#1f2a3a;--tx:#e6edf6;--mut:#8b98ab;--pri:#36e2d4;--grad:linear-gradient(135deg,#36e2d4,#1ab3e6);--red:#f87171;--grn:#34d399;--amb:#fbbf24}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+.banner{background:#1a2333;color:var(--amb);text-align:center;font-size:12px;padding:6px 10px}
+header{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--bd);position:sticky;top:0;background:rgba(11,15,23,.95);backdrop-filter:blur(8px);z-index:20;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:17px}.logo img{width:30px;height:30px;border-radius:8px}
+.modes{display:flex;gap:4px;background:var(--card);padding:4px;border-radius:12px;border:1px solid var(--bd)}
+.modes button{border:0;background:none;padding:7px 12px;border-radius:9px;cursor:pointer;color:var(--mut)}
+.modes button.on{background:var(--grad);color:#06121a;font-weight:600}
+.sp{flex:1}
+.btn{border:1px solid var(--bd);background:var(--card);padding:8px 14px;border-radius:10px;cursor:pointer}
+.btn:hover{border-color:#2d3b52}.btn.pri{background:var(--grad);border:0;color:#06121a;font-weight:600}.btn.sm{padding:5px 10px;font-size:12px}
+.btn.dng{color:var(--red)}.btn:disabled{opacity:.4;cursor:not-allowed}
+.layout{display:flex;min-height:calc(100vh - 100px)}
+nav.side{width:210px;border-inline-end:1px solid var(--bd);padding:14px 10px;display:flex;flex-direction:column;gap:4px}
+nav.side button{text-align:start;border:0;background:none;padding:9px 12px;border-radius:10px;cursor:pointer;color:var(--mut)}
+nav.side button.on{background:var(--card);color:var(--tx);box-shadow:inset 3px 0 0 var(--pri)}
+[dir=rtl] nav.side button.on{box-shadow:inset -3px 0 0 var(--pri)}
+main{flex:1;padding:20px;max-width:1200px;width:100%;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px}h2{font-size:17px;margin:0 0 12px}.mut{color:var(--mut)}.small{font-size:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px}
+.grid{display:grid;gap:14px}.g4{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.g2{grid-template-columns:1fr 1fr}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+input,select,textarea{background:var(--card2);border:1px solid var(--bd);border-radius:10px;padding:8px 10px;outline:none;min-width:0}
+input:focus,select:focus,textarea:focus{border-color:var(--pri)}
+label{display:flex;flex-direction:column;gap:4px;font-size:12px;color:var(--mut)}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--bd)}
+.b-g{color:var(--grn);border-color:#14532d;background:#052e1a}.b-a{color:var(--amb);border-color:#713f12;background:#2a1c05}.b-r{color:var(--red);border-color:#7f1d1d;background:#2a0a0a}.b-p{color:var(--pri);border-color:#115e59;background:#062a28}
+.price{font-size:18px;font-weight:700}.old{text-decoration:line-through;color:var(--mut);font-size:12px;margin-inline-start:6px}
+table{width:100%;border-collapse:collapse}th,td{padding:9px 8px;border-bottom:1px solid var(--bd);text-align:start;vertical-align:middle}th{color:var(--mut);font-weight:500;font-size:12px}
+.tw{overflow-x:auto}
+.kpi .v{font-size:24px;font-weight:700;margin-top:4px}
+.tot{display:flex;justify-content:space-between;padding:4px 0}.tot.big{font-size:18px;font-weight:700;border-top:1px solid var(--bd);padding-top:10px;margin-top:6px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--bd);border-radius:10px}.qty button{border:0;background:none;width:28px;height:28px;cursor:pointer}.qty span{min-width:26px;text-align:center}
+.steps{display:flex;gap:6px;margin-top:10px}.steps div{flex:1;text-align:center;font-size:11px;padding:6px 2px;border-radius:8px;background:var(--card2);color:var(--mut)}.steps div.done{background:#062a28;color:var(--pri)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal .card{max-width:720px;width:100%;max-height:90vh;overflow:auto}
+.inv{background:#fff;color:#111;border-radius:12px;padding:20px}.inv th,.inv td{border-color:#ddd;color:#111}
+.qr{width:96px;height:96px;background:repeating-conic-gradient(#111 0 25%,#fff 0 50%) 0 0/16px 16px;border:4px solid #111}
+.bars{display:flex;flex-direction:column;gap:8px}.bar{display:flex;align-items:center;gap:8px}.bar .t{width:110px;font-size:12px;color:var(--mut)}.bar .f{height:18px;border-radius:6px;background:var(--grad)}
+.toast{position:fixed;bottom:20px;inset-inline-start:50%;transform:translateX(-50%);background:#052e1a;color:var(--grn);border:1px solid #14532d;padding:10px 16px;border-radius:12px;z-index:60}
+[dir=rtl] .toast{transform:translateX(50%)}
+.drop{border:2px dashed var(--bd);border-radius:14px;padding:18px;text-align:center}
+.up{color:var(--red)}.down{color:var(--grn)}
+ul.clean{margin:6px 0;padding-inline-start:18px}ul.clean li{margin:4px 0}
+@media(max-width:800px){nav.side{position:fixed;bottom:0;inset-inline:0;width:auto;flex-direction:row;overflow-x:auto;border:0;border-top:1px solid var(--bd);background:var(--bg);z-index:30;padding:6px}
+nav.side button{white-space:nowrap;font-size:12px}main{padding:14px 12px 80px}.g2{grid-template-columns:1fr}.modes button{padding:6px 9px;font-size:12px}}
+@media print{body *{visibility:hidden}.inv,.inv *{visibility:visible}.inv{position:absolute;inset:0}}
+</style>
+</head>
+<body>
+<div class="banner" id="banner"></div>
+<header>
+  <div class="logo"><img src="../icons/icon-192.png" alt=""><span>Implantly</span></div>
+  <div class="modes" id="modes"></div>
+  <div class="sp"></div>
+  <select id="clinicSel" title="clinic"></select>
+  <button class="btn sm" id="langBtn"></button>
+</header>
+<div class="layout"><nav class="side" id="side"></nav><main id="main"></main></div>
+<div id="modalRoot"></div>
+<script>
+// ---------- i18n ----------
+const T={
+en:{banner:"Prototype for review — sample data, nothing is saved",clinic:"Clinic view",admin:"Admin panel",plan:"Plan & cost",lang:"العربية",
+catalog:"Catalog",kit:"Quick case kit",cart:"Cart",orders:"My orders",dashboard:"Dashboard",products:"Products",prices:"Price list upload",offers:"Offers & discounts",aorders:"Orders",clinics:"Clinics",settings:"Settings",
+search:"Search name or SKU…",allBrands:"All brands",allCats:"All categories",add:"Add to cart",inStock:"In stock",low:"Low stock",out:"Out of stock",goldNote:"Your clinic price",
+brand:"Brand",diameter:"Diameter",length:"Length",suggested:"Suggested kit",addKit:"Add kit to cart",noKit:"No matching implant in catalog for this size.",
+empty:"Your cart is empty.",subtotal:"Subtotal",discounts:"Discounts",vat:"VAT 15%",total:"Total",coupon:"Coupon code",apply:"Apply",badCoupon:"Invalid or not applicable coupon",placeOrder:"Place order",placed:"Order placed",
+status:"Status",date:"Date",items:"Items",invoice:"View invoice",print:"Print",close:"Close",
+login:"Admin sign in",email:"Email",password:"Password",signin:"Sign in",revMonth:"Revenue this month",ordersN:"Orders",avg:"Average order",lowN:"Low-stock items",byBrand:"Revenue by brand",top:"Top products",recent:"Recent orders",
+sku:"SKU",name:"Name",system:"System",category:"Category",price:"Price (SAR)",stock:"Stock",active:"Active",actions:"Actions",addProduct:"Add product",save:"Save",disable:"Disable",enable:"Enable",
+uploadTitle:"Upload a price list (CSV) or paste SKU,price lines",chooseFile:"Choose CSV file",preview:"Preview",applyChanges:"Apply changes",download:"Download current price list (CSV)",oldP:"Old price",newP:"New price",change:"Change",unknown:"Unknown SKU",
+createOffer:"Create offer",offerName:"Offer name",type:"Type",pct:"Percentage %",fixed:"Fixed SAR amount",bxgy:"Buy X get 1 free",value:"Value",appliesTo:"Applies to",wholeOrder:"Whole order",start:"Start",end:"End",code:"Coupon code (optional)",minOrder:"Minimum order SAR",forClinic:"Only for clinic",any:"Any",on:"On",off:"Off",
+courier:"Courier",tracking:"Tracking number",tier:"Tier",special:"Special discount %",balance:"Outstanding",company:"Company name",vatNo:"VAT number",currency:"Currency",notify:"Notification email",wa:"WhatsApp number",
+seller:"Seller",buyer:"Buyer",qty:"Qty",unit:"Unit",lineTotal:"Line total",zatca:"ZATCA e-invoice QR",taxInvoice:"Tax Invoice",free:"Free",saved:"Saved",kitFor:"Kit for"},
+ar:{banner:"نموذج أولي للمراجعة — بيانات تجريبية، لا يتم حفظ أي شيء",clinic:"واجهة العيادة",admin:"لوحة الإدارة",plan:"الخطة والتكلفة",lang:"English",
+catalog:"الكتالوج",kit:"طقم الحالة السريع",cart:"السلة",orders:"طلباتي",dashboard:"لوحة المعلومات",products:"المنتجات",prices:"رفع قائمة الأسعار",offers:"العروض والخصومات",aorders:"الطلبات",clinics:"العيادات",settings:"الإعدادات",
+search:"ابحث بالاسم أو الرمز…",allBrands:"كل العلامات",allCats:"كل الفئات",add:"أضف إلى السلة",inStock:"متوفر",low:"مخزون منخفض",out:"غير متوفر",goldNote:"سعر عيادتك",
+brand:"العلامة",diameter:"القطر",length:"الطول",suggested:"الطقم المقترح",addKit:"أضف الطقم إلى السلة",noKit:"لا يوجد زرع مطابق لهذا المقاس.",
+empty:"سلتك فارغة.",subtotal:"المجموع الفرعي",discounts:"الخصومات",vat:"ضريبة القيمة المضافة 15%",total:"الإجمالي",coupon:"رمز القسيمة",apply:"تطبيق",badCoupon:"القسيمة غير صالحة أو غير منطبقة",placeOrder:"تأكيد الطلب",placed:"تم إرسال الطلب",
+status:"الحالة",date:"التاريخ",items:"العناصر",invoice:"عرض الفاتورة",print:"طباعة",close:"إغلاق",
+login:"دخول المسؤول",email:"البريد الإلكتروني",password:"كلمة المرور",signin:"دخول",revMonth:"إيرادات هذا الشهر",ordersN:"الطلبات",avg:"متوسط الطلب",lowN:"منتجات منخفضة المخزون",byBrand:"الإيرادات حسب العلامة",top:"أكثر المنتجات مبيعاً",recent:"أحدث الطلبات",
+sku:"الرمز",name:"الاسم",system:"النظام",category:"الفئة",price:"السعر (ر.س)",stock:"المخزون",active:"نشط",actions:"إجراءات",addProduct:"إضافة منتج",save:"حفظ",disable:"إيقاف",enable:"تفعيل",
+uploadTitle:"ارفع قائمة أسعار (CSV) أو الصق أسطر الرمز,السعر",chooseFile:"اختر ملف CSV",preview:"معاينة",applyChanges:"تطبيق التغييرات",download:"تنزيل قائمة الأسعار الحالية (CSV)",oldP:"السعر القديم",newP:"السعر الجديد",change:"التغيير",unknown:"رمز غير معروف",
+createOffer:"إنشاء عرض",offerName:"اسم العرض",type:"النوع",pct:"نسبة مئوية %",fixed:"مبلغ ثابت ر.س",bxgy:"اشترِ X واحصل على 1 مجاناً",value:"القيمة",appliesTo:"ينطبق على",wholeOrder:"الطلب كاملاً",start:"البداية",end:"النهاية",code:"رمز قسيمة (اختياري)",minOrder:"الحد الأدنى للطلب ر.س",forClinic:"لعيادة محددة فقط",any:"الكل",on:"مفعل",off:"متوقف",
+courier:"شركة الشحن",tracking:"رقم التتبع",tier:"الفئة",special:"خصم خاص %",balance:"المستحق",company:"اسم الشركة",vatNo:"الرقم الضريبي",currency:"العملة",notify:"بريد الإشعارات",wa:"رقم واتساب",
+seller:"البائع",buyer:"المشتري",qty:"الكمية",unit:"سعر الوحدة",lineTotal:"الإجمالي",zatca:"رمز الفاتورة الإلكترونية (زاتكا)",taxInvoice:"فاتورة ضريبية",free:"مجاني",saved:"تم الحفظ",kitFor:"طقم لـ"}};
+const ST={Pending:"قيد الانتظار",Confirmed:"مؤكد",Processing:"قيد التجهيز",Shipped:"تم الشحن",Delivered:"تم التسليم",Cancelled:"ملغي"};
+const CAT_AR={"Implant":"زرعة","Cover Screw":"برغي تغطية","Healing Abutment":"دعامة شفاء","Multi-Unit":"دعامة متعددة"};
+
+// ---------- state ----------
+const S={lang:"en",mode:"clinic",tab:"catalog",atab:"dashboard",admin:false,clinicId:1,q:"",fb:"",fc:"",cart:[],coupon:"",couponOk:null,
+kit:{brand:"MegaGen",d:"4.0",l:"10"},preview:null,settings:{company:"Implantly Trading Co.",vat:"3XXXXXXXXXXXXX3",email:"orders@client.com",wa:"+966 5X XXX XXXX"},nextId:15,nextOffer:4};
+const P=[
+[1,"REF-M-ev42s-11","Astra Tech EV 4.2 S Ø4.2×11","Astra Tech","Astra EV","Implant",1069,40],
+[2,"68010005","Cover Screw EV 4.2","Astra Tech","Astra EV","Cover Screw",169,120],
+[3,"HA-M-2","Healing Abutment EV Ø4.0 H2","Astra Tech","Astra EV","Healing Abutment",206,60],
+[4,"REF-NA-43-10","NobelActive 4.3 Ø4.3×10","Nobel Biocare","NobelActive","Implant",1069,25],
+[5,"36647","Cover Screw NobelActive 3.0","Nobel Biocare","NobelActive","Cover Screw",169,80],
+[6,"REF-BLX-RB-375-10","Straumann BLX RB Ø3.75×10","Straumann","BLX","Implant",1069,18],
+[7,"064.4100S","BLX Closure Cap RB/WB H0","Straumann","BLX","Cover Screw",169,50],
+[8,"REF-AR-R40-10","MegaGen AnyRidge Regular Ø4.0×10","MegaGen","AnyRidge","Implant",1069,55],
+[9,"AANCSF4008","Cover Screw AnyRidge Ø4.0","MegaGen","AnyRidge","Cover Screw",169,140],
+[10,"HA-R40-3.5","Healing Abutment AnyRidge Ø4.0 H3.5","MegaGen","AnyRidge","Healing Abutment",206,90],
+[11,"REF-R40-10","ROOTT R Rootform Ø4.0×10","ROOTT","ROOTT R","Implant",731,3],
+[12,"CS05","Cover Screw ROOTT R H0.5","ROOTT","ROOTT R","Cover Screw",98,0],
+[13,"MUA-AR-17-2","Multi-Unit Abutment AnyRidge 17° H2","MegaGen","AnyRidge","Multi-Unit",450,30],
+[14,"MUA-NA-0-2.5","Multi-Unit Abutment NobelActive straight H2.5","Nobel Biocare","NobelActive","Multi-Unit",520,12]
+].map(([id,sku,name,brand,system,cat,price,stock])=>({id,sku,name,brand,system,cat,price,stock,active:true,sold:0}));
+const C=[{id:1,name:"Al Noor Dental Center",tier:"Gold",disc:5,bal:4200},{id:2,name:"Riyadh Smile Clinic",tier:"Standard",disc:0,bal:0},{id:3,name:"Jeddah Implant Lab",tier:"Standard",disc:0,bal:1850}];
+const O=[
+{id:1,name:"MegaGen Week",type:"pct",value:10,scope:"brand",target:"MegaGen",start:"2026-11-26",end:"2026-12-10",code:"",min:0,clinic:0,on:true},
+{id:2,name:"WELCOME50",type:"fixed",value:50,scope:"order",target:"",start:"2026-11-01",end:"2026-12-31",code:"WELCOME50",min:1000,clinic:0,on:true},
+{id:3,name:"Buy 10 AnyRidge implants get 1 free",type:"bxgy",value:10,scope:"product",target:"REF-AR-R40-10",start:"2026-11-01",end:"2026-12-31",code:"",min:0,clinic:0,on:true}];
+const ORD=[
+{id:"MD-H64ICM",clinic:1,date:"2026-11-26",status:"Processing",lines:[{pid:8,qty:1,price:1069},{pid:9,qty:1,price:169},{pid:10,qty:1,price:206}],disc:0,courier:"",trk:""},
+{id:"MD-PHFEZO",clinic:2,date:"2026-11-24",status:"Shipped",lines:[{pid:4,qty:2,price:1069},{pid:5,qty:2,price:169}],disc:0,courier:"SMSA",trk:"290011234"},
+{id:"MD-TGV9RO",clinic:3,date:"2026-11-20",status:"Delivered",lines:[{pid:6,qty:1,price:1069},{pid:7,qty:1,price:169},{pid:13,qty:2,price:450}],disc:0,courier:"Aramex",trk:"AX77812"}];
+ORD.forEach(o=>{o.lines.forEach(l=>{const p=pr(l.pid);if(p)p.sold+=l.qty});o.vat=round((sum(o.lines)-o.disc)*.15)});
+
+// ---------- helpers ----------
+function t(k){return T[S.lang][k]||k}
+function sar(n){return (S.lang==="ar"?"ر.س ":"SAR ")+Number(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function round(n){return Math.round(n*100)/100}
+function pr(id){return P.find(p=>p.id===id)}
+function sum(lines){return lines.reduce((s,l)=>s+l.qty*l.price,0)}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function clinic(){return C.find(c=>c.id===S.clinicId)}
+function today(){return "2026-11-26"}
+function live(o,cl){return o.on&&o.start<=today()&&o.end>=today()&&(!o.clinic||o.clinic===cl)}
+function matches(o,p){return o.scope==="order"||(o.scope==="brand"&&p.brand===o.target)||(o.scope==="category"&&p.cat===o.target)||(o.scope==="product"&&p.sku===o.target)}
+// unit price for a clinic after automatic % / fixed-per-item offers and clinic discount
+function unitPrice(p,cl){let best=0;O.filter(o=>live(o,cl.id)&&!o.code&&o.scope!=="order"&&matches(o,p)).forEach(o=>{if(o.type==="pct")best=Math.max(best,p.price*o.value/100);if(o.type==="fixed")best=Math.max(best,Math.min(o.value,p.price))});
+ let u=p.price-best;if(cl.disc)u=u*(1-cl.disc/100);return round(u)}
+function cartCalc(){const cl=clinic();const lines=S.cart.map(c=>{const p=pr(c.pid);return{p,qty:c.qty,unit:unitPrice(p,cl)}});
+ let sub=lines.reduce((s,l)=>s+l.unit*l.qty,0),listSub=lines.reduce((s,l)=>s+l.p.price*l.qty,0);const notes=[];const freeLines=[];
+ if(listSub>sub)notes.push([S.lang==="ar"?"عروض تلقائية وخصم العيادة":"Automatic offers & clinic discount",listSub-sub]);
+ O.filter(o=>live(o,cl.id)&&o.type==="bxgy").forEach(o=>{lines.filter(l=>matches(o,l.p)).forEach(l=>{const f=Math.floor(l.qty/o.value);if(f>0)freeLines.push({p:l.p,qty:f})})});
+ let cdisc=0;if(S.coupon){const o=O.find(o=>o.code&&o.code.toUpperCase()===S.coupon.toUpperCase()&&live(o,cl.id));
+  if(o&&sub>=o.min){const base=o.scope==="order"?sub:lines.filter(l=>matches(o,l.p)).reduce((s,l)=>s+l.unit*l.qty,0);cdisc=o.type==="pct"?base*o.value/100:Math.min(o.value,base);S.couponOk=true;notes.push([o.name,cdisc])}else S.couponOk=false}
+ O.filter(o=>live(o,cl.id)&&!o.code&&o.scope==="order"&&o.type!=="bxgy"&&sub>=o.min).forEach(o=>{const d=o.type==="pct"?sub*o.value/100:o.value;cdisc+=d;notes.push([o.name,d])});
+ const net=Math.max(0,sub-cdisc),vat=round(net*.15);return{lines,freeLines,listSub,sub,cdisc,notes,net,vat,total:round(net+vat),totalDisc:round(listSub-sub+cdisc)}}
+function stockBadge(p){return p.stock<=0?`<span class="badge b-r">${t("out")}</span>`:p.stock<=5?`<span class="badge b-a">${t("low")} · ${p.stock}</span>`:`<span class="badge b-g">${t("inStock")}</span>`}
+function catName(c){return S.lang==="ar"?(CAT_AR[c]||c):c}
+function stName(s){return S.lang==="ar"?ST[s]:s}
+function stBadge(s){const m={Pending:"b-a",Confirmed:"b-p",Processing:"b-p",Shipped:"b-p",Delivered:"b-g",Cancelled:"b-r"};return `<span class="badge ${m[s]}">${stName(s)}</span>`}
+function toast(m){const d=document.createElement("div");d.className="toast";d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),2200)}
+function orderTotal(o){const net=sum(o.lines)-o.disc;return round(net+net*.15)}
+function go(k,v){S[k]=v;render()}
+
+// ---------- render ----------
+function render(){
+ document.documentElement.lang=S.lang;document.documentElement.dir=S.lang==="ar"?"rtl":"ltr";
+ banner.textContent=t("banner");langBtn.textContent=t("lang");
+ modes.innerHTML=["clinic","admin","plan"].map(m=>`<button class="${S.mode===m?"on":""}" onclick="go('mode','${m}')">${t(m)}</button>`).join("");
+ clinicSel.style.display=S.mode==="clinic"?"":"none";
+ clinicSel.innerHTML=C.map(c=>`<option value="${c.id}" ${c.id===S.clinicId?"selected":""}>${esc(c.name)}</option>`).join("");
+ let tabs=[];if(S.mode==="clinic")tabs=["catalog","kit","cart","orders"];else if(S.mode==="admin"&&S.admin)tabs=["dashboard","products","prices","offers","aorders","clinics","settings"];
+ const cur=S.mode==="clinic"?S.tab:S.atab;
+ side.style.display=tabs.length?"":"none";
+ side.innerHTML=tabs.map(k=>`<button class="${cur===k?"on":""}" onclick="go('${S.mode==="clinic"?"tab":"atab"}','${k}')">${t(k)}${k==="cart"&&S.cart.length?` (${S.cart.reduce((s,c)=>s+c.qty,0)})`:""}</button>`).join("");
+ let h="";
+ if(S.mode==="plan")h=vPlan();
+ else if(S.mode==="clinic")h={catalog:vCatalog,kit:vKit,cart:vCart,orders:vOrders}[S.tab]();
+ else if(!S.admin)h=vLogin();
+ else h={dashboard:vDash,products:vProducts,prices:vPrices,offers:vOffers,aorders:vAOrders,clinics:vClinics,settings:vSettings}[S.atab]();
+ main.innerHTML=h;
+}
+langBtn.onclick=()=>go("lang",S.lang==="en"?"ar":"en");
+clinicSel.onchange=e=>{S.clinicId=+e.target.value;render()};
+
+// ----- clinic views
+function vCatalog(){const cl=clinic();const brands=[...new Set(P.map(p=>p.brand))],cats=[...new Set(P.map(p=>p.cat))];
+ const list=P.filter(p=>p.active&&(!S.fb||p.brand===S.fb)&&(!S.fc||p.cat===S.fc)&&(!S.q||(p.name+p.sku).toLowerCase().includes(S.q.toLowerCase())));
+ return `<h1>${t("catalog")}</h1><p class="mut">${esc(cl.name)} · ${cl.tier}${cl.disc?` · ${cl.disc}%`:""}</p>
+ <div class="row" style="margin:12px 0"><input style="flex:1;min-width:180px" placeholder="${t("search")}" value="${esc(S.q)}" oninput="S.q=this.value;rerenderList()" id="qbox">
+ <select onchange="go('fb',this.value)"><option value="">${t("allBrands")}</option>${brands.map(b=>`<option ${S.fb===b?"selected":""}>${b}</option>`).join("")}</select>
+ <select onchange="go('fc',this.value)"><option value="">${t("allCats")}</option>${cats.map(c=>`<option value="${c}" ${S.fc===c?"selected":""}>${catName(c)}</option>`).join("")}</select></div>
+ <div class="grid g4" id="plist">${list.map(p=>pCard(p,cl)).join("")}</div>`}
+function rerenderList(){const cl=clinic();const list=P.filter(p=>p.active&&(!S.fb||p.brand===S.fb)&&(!S.fc||p.cat===S.fc)&&(!S.q||(p.name+p.sku).toLowerCase().includes(S.q.toLowerCase())));document.getElementById("plist").innerHTML=list.map(p=>pCard(p,cl)).join("")}
+function pCard(p,cl){const u=unitPrice(p,cl);const offs=O.filter(o=>live(o,cl.id)&&!o.code&&o.scope!=="order"&&matches(o,p));
+ return `<div class="card"><div class="row" style="justify-content:space-between"><span class="small mut">${esc(p.brand)} · ${catName(p.cat)}</span>${stockBadge(p)}</div>
+ <div style="font-weight:600;margin:8px 0 2px">${esc(p.name)}</div><div class="small mut">${t("sku")}: ${esc(p.sku)}</div>
+ <div style="margin:10px 0"><span class="price">${sar(u)}</span>${u<p.price?`<span class="old">${sar(p.price)}</span>`:""}</div>
+ <div class="row" style="margin-bottom:10px">${offs.map(o=>`<span class="badge b-p">${o.type==="pct"?"-"+o.value+"%":o.type==="bxgy"?o.value+"+1":"-"+sar(o.value)}</span>`).join("")}${cl.disc?`<span class="badge b-a">${t("goldNote")} -${cl.disc}%</span>`:""}</div>
+ <button class="btn pri" style="width:100%" ${p.stock<=0?"disabled":""} onclick="addCart(${p.id},1)">${t("add")}</button></div>`}
+function addCart(pid,q){const p=pr(pid);if(!p||p.stock<=0)return;const c=S.cart.find(c=>c.pid===pid);if(c)c.qty=Math.min(p.stock,c.qty+q);else S.cart.push({pid,qty:Math.min(q,p.stock)});toast("✓ "+p.name);render()}
+function vKit(){const k=S.kit;const brands=[...new Set(P.map(p=>p.brand))];
+ const imp=P.find(p=>p.active&&p.brand===k.brand&&p.cat==="Implant"&&p.name.includes(k.d)&&p.name.includes("×"+k.l))||P.find(p=>p.active&&p.brand===k.brand&&p.cat==="Implant");
+ const parts=imp?[imp,...P.filter(p=>p.active&&p.system===imp.system&&(p.cat==="Cover Screw"||p.cat==="Healing Abutment"))]:[];const cl=clinic();
+ return `<h1>${t("kit")}</h1><div class="card" style="margin-top:12px"><div class="row">
+ <label>${t("brand")}<select onchange="S.kit.brand=this.value;render()">${brands.map(b=>`<option ${k.brand===b?"selected":""}>${b}</option>`).join("")}</select></label>
+ <label>${t("diameter")}<select onchange="S.kit.d=this.value;render()">${["3.5","3.75","4.0","4.2","4.3"].map(v=>`<option ${k.d===v?"selected":""}>${v}</option>`).join("")}</select></label>
+ <label>${t("length")}<select onchange="S.kit.l=this.value;render()">${["10","11"].map(v=>`<option ${k.l===v?"selected":""}>${v}</option>`).join("")}</select></label></div></div>
+ <div class="card" style="margin-top:14px"><h2>${t("suggested")}</h2>${!parts.length?`<p class="mut">${t("noKit")}</p>`:`<table><tr><th>${t("name")}</th><th>${t("sku")}</th><th>${t("stock")}</th><th>${t("price")}</th></tr>
+ ${parts.map(p=>`<tr><td>${esc(p.name)}</td><td class="mut">${p.sku}</td><td>${stockBadge(p)}</td><td>${sar(unitPrice(p,cl))}</td></tr>`).join("")}</table>
+ <div class="row" style="justify-content:space-between;margin-top:12px"><b>${sar(parts.reduce((s,p)=>s+unitPrice(p,cl),0))}</b><button class="btn pri" onclick="${parts.map(p=>`addCart(${p.id},1)`).join(";")}">${t("addKit")}</button></div>`}</div>`}
+function vCart(){if(!S.cart.length)return `<h1>${t("cart")}</h1><div class="card" style="margin-top:12px"><p class="mut">${t("empty")}</p></div>`;const c=cartCalc();
+ return `<h1>${t("cart")}</h1><div class="grid g2" style="margin-top:12px;grid-template-columns:2fr 1fr"><div class="card tw"><table><tr><th>${t("name")}</th><th>${t("unit")}</th><th>${t("qty")}</th><th>${t("lineTotal")}</th><th></th></tr>
+ ${c.lines.map(l=>`<tr><td>${esc(l.p.name)}<div class="small mut">${l.p.sku}</div></td><td>${sar(l.unit)}${l.unit<l.p.price?`<div class="old">${sar(l.p.price)}</div>`:""}</td>
+ <td><span class="qty"><button onclick="qty(${l.p.id},-1)">−</button><span>${l.qty}</span><button onclick="qty(${l.p.id},1)">+</button></span></td><td>${sar(l.unit*l.qty)}</td><td><button class="btn sm dng" onclick="qty(${l.p.id},-999)">✕</button></td></tr>`).join("")}
+ ${c.freeLines.map(f=>`<tr><td>${esc(f.p.name)} <span class="badge b-g">${t("free")}</span></td><td>—</td><td>${f.qty}</td><td>${sar(0)}</td><td></td></tr>`).join("")}</table></div>
+ <div class="card"><div class="row"><input style="flex:1" placeholder="${t("coupon")}" value="${esc(S.coupon)}" id="cpn"><button class="btn" onclick="S.coupon=cpn.value.trim();render()">${t("apply")}</button></div>
+ ${S.coupon&&S.couponOk===false?`<p class="small" style="color:var(--red)">${t("badCoupon")}</p>`:""}<p class="small mut">Try: WELCOME50</p>
+ <div class="tot"><span>${t("subtotal")}</span><span>${sar(c.listSub)}</span></div>
+ ${c.notes.map(n=>`<div class="tot small" style="color:var(--grn)"><span>− ${esc(n[0])}</span><span>${sar(n[1])}</span></div>`).join("")}
+ <div class="tot"><span>${t("vat")}</span><span>${sar(c.vat)}</span></div><div class="tot big"><span>${t("total")}</span><span>${sar(c.total)}</span></div>
+ <button class="btn pri" style="width:100%;margin-top:12px" onclick="placeOrder()">${t("placeOrder")}</button></div></div>`}
+function qty(pid,d){const c=S.cart.find(c=>c.pid===pid);const p=pr(pid);c.qty=Math.min(p.stock,c.qty+d);if(c.qty<=0)S.cart=S.cart.filter(x=>x!==c);render()}
+function placeOrder(){const c=cartCalc();const id="MD-"+Math.random().toString(36).slice(2,8).toUpperCase();
+ const lines=c.lines.map(l=>({pid:l.p.id,qty:l.qty,price:l.unit})).concat(c.freeLines.map(f=>({pid:f.p.id,qty:f.qty,price:0})));
+ lines.forEach(l=>{const p=pr(l.pid);p.stock=Math.max(0,p.stock-l.qty);p.sold+=l.qty});
+ ORD.unshift({id,clinic:S.clinicId,date:today(),status:"Pending",lines,disc:round(c.cdisc),courier:"",trk:""});S.cart=[];S.coupon="";S.couponOk=null;S.tab="orders";render();toast(t("placed")+" · "+id)}
+function steps(s){const all=["Pending","Processing","Shipped","Delivered"];const i=all.indexOf(s==="Confirmed"?"Pending":s);return `<div class="steps">${all.map((a,j)=>`<div class="${j<=i&&s!=="Cancelled"?"done":""}">${stName(a)}</div>`).join("")}</div>`}
+function vOrders(){const list=ORD.filter(o=>o.clinic===S.clinicId);return `<h1>${t("orders")}</h1><div class="grid" style="margin-top:12px">${list.length?list.map(o=>`<div class="card"><div class="row" style="justify-content:space-between"><b>${o.id}</b>${stBadge(o.status)}</div>
+ <div class="small mut">${o.date} · ${o.lines.reduce((s,l)=>s+l.qty,0)} ${t("items")} · ${sar(orderTotal(o))}${o.trk?` · ${o.courier} ${o.trk}`:""}</div>${steps(o.status)}
+ <button class="btn sm" style="margin-top:10px" onclick="invoice('${o.id}')">${t("invoice")}</button></div>`).join(""):`<div class="card mut">—</div>`}</div>`}
+function invoice(id){const o=ORD.find(x=>x.id===id),cl=C.find(c=>c.id===o.clinic);const sub=sum(o.lines),net=sub-o.disc,vat=round(net*.15);
+ modalRoot.innerHTML=`<div class="modal" onclick="if(event.target===this)modalRoot.innerHTML=''"><div class="card"><div class="inv" dir="ltr">
+ <div class="row" style="justify-content:space-between"><div><h2 style="margin:0">Tax Invoice · فاتورة ضريبية</h2><div>${o.id} · ${o.date}</div></div><div class="qr" title="ZATCA"></div></div>
+ <div class="grid g2" style="margin:14px 0"><div><b>Seller · البائع</b><br>${esc(S.settings.company)}<br>VAT · الرقم الضريبي: ${esc(S.settings.vat)}<br>Riyadh, Saudi Arabia</div><div><b>Buyer · المشتري</b><br>${esc(cl.name)}</div></div>
+ <table><tr><th>Item · الصنف</th><th>SKU</th><th>Qty</th><th>Unit</th><th>Total</th></tr>${o.lines.map(l=>{const p=pr(l.pid);return `<tr><td>${esc(p.name)}</td><td>${p.sku}</td><td>${l.qty}</td><td>${l.price.toFixed(2)}</td><td>${(l.qty*l.price).toFixed(2)}</td></tr>`}).join("")}</table>
+ <div style="margin-top:10px;text-align:right">Subtotal · المجموع: SAR ${sub.toFixed(2)}<br>${o.disc?`Discount · الخصم: −SAR ${o.disc.toFixed(2)}<br>`:""}VAT 15% · الضريبة: SAR ${vat.toFixed(2)}<br><b style="font-size:17px">Total · الإجمالي: SAR ${(net+vat).toFixed(2)}</b></div>
+ <p style="font-size:11px;color:#666">QR = ${t("zatca")} (placeholder)</p></div>
+ <div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn" onclick="window.print()">${t("print")}</button><button class="btn pri" onclick="modalRoot.innerHTML=''">${t("close")}</button></div></div></div>`}
+
+// ----- admin views
+function vLogin(){return `<div class="card" style="max-width:380px;margin:40px auto"><h1>${t("login")}</h1><div class="grid" style="margin-top:14px"><label>${t("email")}<input value="admin@client.com"></label><label>${t("password")}<input type="password" value="demo1234"></label>
+ <button class="btn pri" onclick="S.admin=true;render()">${t("signin")}</button></div></div>`}
+function vDash(){const mon=ORD.filter(o=>o.date.startsWith("2026-11")&&o.status!=="Cancelled");const rev=mon.reduce((s,o)=>s+orderTotal(o),0);
+ const byB={};ORD.forEach(o=>o.lines.forEach(l=>{const p=pr(l.pid);byB[p.brand]=(byB[p.brand]||0)+l.qty*l.price}));const mx=Math.max(1,...Object.values(byB));
+ const top=[...P].sort((a,b)=>b.sold-a.sold).slice(0,5);
+ return `<h1>${t("dashboard")}</h1><div class="grid g4" style="margin-top:12px">
+ ${[[t("revMonth"),sar(rev)],[t("ordersN"),mon.length],[t("avg"),sar(mon.length?rev/mon.length:0)],[t("lowN"),P.filter(p=>p.stock<=5).length]].map(([a,b])=>`<div class="card kpi"><div class="mut small">${a}</div><div class="v">${b}</div></div>`).join("")}</div>
+ <div class="grid g2" style="margin-top:14px"><div class="card"><h2>${t("byBrand")}</h2><div class="bars">${Object.entries(byB).sort((a,b)=>b[1]-a[1]).map(([b,v])=>`<div class="bar"><span class="t">${b}</span><div class="f" style="width:${Math.max(4,v/mx*60)}%"></div><span class="small">${sar(v)}</span></div>`).join("")}</div></div>
+ <div class="card"><h2>${t("top")}</h2><table>${top.map(p=>`<tr><td>${esc(p.name)}</td><td>${p.sold}</td></tr>`).join("")}</table></div></div>
+ <div class="card tw" style="margin-top:14px"><h2>${t("recent")}</h2>${ordTable(ORD.slice(0,5),false)}</div>`}
+function ordTable(list,edit){return `<table><tr><th>ID</th><th>${t("clinics")}</th><th>${t("date")}</th><th>${t("total")}</th><th>${t("status")}</th><th></th></tr>${list.map(o=>`<tr><td><b>${o.id}</b></td><td>${esc(C.find(c=>c.id===o.clinic).name)}</td><td>${o.date}</td><td>${sar(orderTotal(o))}</td>
+ <td>${edit?`<select onchange="setStatus('${o.id}',this.value)">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(s=>`<option value="${s}" ${o.status===s?"selected":""}>${stName(s)}</option>`).join("")}</select>${o.trk?`<div class="small mut">${o.courier} ${o.trk}</div>`:""}`:stBadge(o.status)}</td>
+ <td><button class="btn sm" onclick="invoice('${o.id}')">${t("invoice")}</button></td></tr>`).join("")}</table>`}
+function setStatus(id,s){const o=ORD.find(x=>x.id===id);if(s==="Shipped"){const c=prompt(t("courier")+" (SMSA / Aramex / Own delivery)",o.courier||"SMSA");if(c===null){render();return}const n=prompt(t("tracking"),o.trk||"");o.courier=c;o.trk=n||""}o.status=s;render();toast(t("saved"))}
+function vProducts(){return `<h1>${t("products")}</h1>
+ <div class="card" style="margin-top:12px"><h2>${t("addProduct")}</h2><div class="row">
+ ${[["sku","np_sku",""],["name","np_name",""],["brand","np_brand","MegaGen"],["system","np_sys","AnyRidge"]].map(([l,id,v])=>`<label>${t(l)}<input id="${id}" value="${v}"></label>`).join("")}
+ <label>${t("category")}<select id="np_cat">${["Implant","Cover Screw","Healing Abutment","Multi-Unit"].map(c=>`<option value="${c}">${catName(c)}</option>`).join("")}</select></label>
+ <label>${t("price")}<input id="np_price" type="number" style="width:110px"></label><label>${t("stock")}<input id="np_stock" type="number" style="width:90px"></label>
+ <button class="btn pri" style="align-self:flex-end" onclick="addProduct()">${t("addProduct")}</button></div></div>
+ <div class="card tw" style="margin-top:14px"><input placeholder="${t("search")}" value="${esc(S.q)}" oninput="S.q=this.value;document.getElementById('ptab').innerHTML=prodRows()" style="width:100%;margin-bottom:10px">
+ <table><thead><tr><th>${t("sku")}</th><th>${t("name")}</th><th>${t("brand")}</th><th>${t("category")}</th><th>${t("price")}</th><th>${t("stock")}</th><th>${t("active")}</th></tr></thead><tbody id="ptab">${prodRows()}</tbody></table></div>`}
+function prodRows(){return P.filter(p=>!S.q||(p.name+p.sku).toLowerCase().includes(S.q.toLowerCase())).map(p=>`<tr style="${p.active?"":"opacity:.45"}"><td class="small">${p.sku}</td><td>${esc(p.name)}</td><td>${p.brand}</td><td>${catName(p.cat)}</td>
+ <td><input type="number" value="${p.price}" style="width:95px" onchange="pr(${p.id}).price=+this.value;toast(t('saved'))"></td><td><input type="number" value="${p.stock}" style="width:75px" onchange="pr(${p.id}).stock=+this.value;toast(t('saved'))"></td>
+ <td><button class="btn sm" onclick="pr(${p.id}).active=!pr(${p.id}).active;render()">${p.active?t("disable"):t("enable")}</button></td></tr>`).join("")}
+function addProduct(){const v=id=>document.getElementById(id).value.trim();if(!v("np_sku")||!v("np_name")||!v("np_price")){alert("SKU, name, price");return}
+ P.push({id:S.nextId++,sku:v("np_sku"),name:v("np_name"),brand:v("np_brand"),system:v("np_sys"),cat:v("np_cat"),price:+v("np_price"),stock:+v("np_stock")||0,active:true,sold:0});render();toast(t("saved"))}
+function vPrices(){const pv=S.preview;return `<h1>${t("prices")}</h1><div class="card" style="margin-top:12px"><h2>${t("uploadTitle")}</h2>
+ <div class="drop"><input type="file" accept=".csv,text/csv" onchange="readCsv(this.files[0])"><p class="small mut">CSV: SKU,price</p></div>
+ <textarea id="csvTxt" rows="5" style="width:100%;margin-top:10px" placeholder="AANCSF4008,175\nREF-AR-R40-10,1099\nNEW-123,50">AANCSF4008,175
+REF-AR-R40-10,1099
+36647,159
+NEW-123,50</textarea>
+ <div class="row" style="margin-top:10px"><button class="btn" onclick="parseCsv(csvTxt.value)">${t("preview")}</button><button class="btn" onclick="downloadCsv()">${t("download")}</button></div></div>
+ ${pv?`<div class="card tw" style="margin-top:14px"><table><tr><th>${t("sku")}</th><th>${t("name")}</th><th>${t("oldP")}</th><th>${t("newP")}</th><th>${t("change")}</th></tr>
+ ${pv.map(r=>r.p?`<tr><td>${r.sku}</td><td>${esc(r.p.name)}</td><td>${sar(r.p.price)}</td><td>${sar(r.np)}</td><td class="${r.np>r.p.price?"up":"down"}">${((r.np-r.p.price)/r.p.price*100).toFixed(1)}%</td></tr>`:`<tr><td>${esc(r.sku)}</td><td colspan="4"><span class="badge b-r">${t("unknown")}</span></td></tr>`).join("")}</table>
+ <button class="btn pri" style="margin-top:12px" onclick="applyPrices()">${t("applyChanges")}</button></div>`:""}`}
+function readCsv(f){if(!f)return;const r=new FileReader();r.onload=()=>{csvTxt.value=r.result;parseCsv(r.result)};r.readAsText(f)}
+function parseCsv(txt){S.preview=txt.split(/\r?\n/).map(l=>l.split(/[,;\t]/).map(x=>x.trim().replace(/^"|"$/g,""))).filter(a=>a[0]&&a[1]&&!isNaN(parseFloat(a[a.length-1]))).map(a=>({sku:a[0],np:parseFloat(a[a.length-1]),p:P.find(p=>p.sku.toLowerCase()===a[0].toLowerCase())}));const keep=csvTxt.value;render();csvTxt.value=keep}
+function applyPrices(){let n=0;S.preview.forEach(r=>{if(r.p){r.p.price=r.np;n++}});S.preview=null;render();toast(t("saved")+" · "+n)}
+function downloadCsv(){const csv="SKU,Name,Brand,Category,Price SAR,Stock\n"+P.map(p=>[p.sku,`"${p.name}"`,p.brand,p.cat,p.price,p.stock].join(",")).join("\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv"}));a.download="implantly-price-list.csv";a.click()}
+function vOffers(){const brands=[...new Set(P.map(p=>p.brand))];return `<h1>${t("offers")}</h1>
+ <div class="card tw" style="margin-top:12px"><table><tr><th>${t("offerName")}</th><th>${t("type")}</th><th>${t("appliesTo")}</th><th>${t("start")} – ${t("end")}</th><th>${t("code")}</th><th></th></tr>
+ ${O.map(o=>`<tr><td><b>${esc(o.name)}</b>${o.clinic?`<div class="small mut">${esc(C.find(c=>c.id===o.clinic).name)}</div>`:""}</td><td>${o.type==="pct"?o.value+"%":o.type==="fixed"?sar(o.value):o.value+"+1"}</td>
+ <td>${o.scope==="order"?t("wholeOrder"):esc(o.target)}${o.min?`<div class="small mut">≥ ${sar(o.min)}</div>`:""}</td><td class="small">${o.start} – ${o.end}</td><td>${o.code||"—"}</td>
+ <td><button class="btn sm ${o.on?"pri":""}" onclick="O.find(x=>x.id===${o.id}).on=!${o.on};render()">${o.on?t("on"):t("off")}</button></td></tr>`).join("")}</table></div>
+ <div class="card" style="margin-top:14px"><h2>${t("createOffer")}</h2><div class="row">
+ <label>${t("offerName")}<input id="of_name" value="Straumann December"></label>
+ <label>${t("type")}<select id="of_type"><option value="pct">${t("pct")}</option><option value="fixed">${t("fixed")}</option><option value="bxgy">${t("bxgy")}</option></select></label>
+ <label>${t("value")}<input id="of_val" type="number" value="8" style="width:80px"></label>
+ <label>${t("appliesTo")}<select id="of_scope" onchange="ofTarget()"><option value="order">${t("wholeOrder")}</option><option value="brand" selected>${t("brand")}</option><option value="category">${t("category")}</option><option value="product">${t("products")}</option></select></label>
+ <label id="of_tw">&nbsp;<select id="of_target">${brands.map(b=>`<option>${b}</option>`).join("")}</select></label>
+ <label>${t("start")}<input id="of_s" type="date" value="2026-11-26"></label><label>${t("end")}<input id="of_e" type="date" value="2026-12-31"></label>
+ <label>${t("code")}<input id="of_code" style="width:120px"></label><label>${t("minOrder")}<input id="of_min" type="number" value="0" style="width:100px"></label>
+ <label>${t("forClinic")}<select id="of_cl"><option value="0">${t("any")}</option>${C.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join("")}</select></label>
+ <button class="btn pri" style="align-self:flex-end" onclick="addOffer()">${t("createOffer")}</button></div></div>`}
+function ofTarget(){const s=of_scope.value;const opts=s==="brand"?[...new Set(P.map(p=>p.brand))]:s==="category"?[...new Set(P.map(p=>p.cat))]:s==="product"?P.map(p=>p.sku):[];of_target.innerHTML=opts.map(o=>`<option>${o}</option>`).join("");of_tw.style.display=opts.length?"":"none"}
+function addOffer(){const g=id=>document.getElementById(id).value;O.push({id:S.nextOffer++,name:g("of_name")||"Offer",type:g("of_type"),value:+g("of_val"),scope:g("of_scope"),target:g("of_scope")==="order"?"":g("of_target"),start:g("of_s"),end:g("of_e"),code:g("of_code").trim().toUpperCase(),min:+g("of_min")||0,clinic:+g("of_cl"),on:true});render();toast(t("saved"))}
+function vAOrders(){return `<h1>${t("aorders")}</h1><div class="row" style="margin:12px 0"><select onchange="S.fs=this.value;render()"><option value="">${t("any")}</option>${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(s=>`<option value="${s}" ${S.fs===s?"selected":""}>${stName(s)}</option>`).join("")}</select></div>
+ <div class="card tw">${ordTable(ORD.filter(o=>!S.fs||o.status===S.fs),true)}</div>`}
+function vClinics(){return `<h1>${t("clinics")}</h1><div class="card tw" style="margin-top:12px"><table><tr><th>${t("name")}</th><th>${t("tier")}</th><th>${t("special")}</th><th>${t("ordersN")}</th><th>${t("balance")}</th></tr>
+ ${C.map(c=>`<tr><td>${esc(c.name)}</td><td><select onchange="C.find(x=>x.id===${c.id}).tier=this.value;toast(t('saved'))">${["Standard","Silver","Gold"].map(x=>`<option ${c.tier===x?"selected":""}>${x}</option>`).join("")}</select></td>
+ <td><input type="number" value="${c.disc}" style="width:70px" onchange="C.find(x=>x.id===${c.id}).disc=+this.value;toast(t('saved'))"></td><td>${ORD.filter(o=>o.clinic===c.id).length}</td><td>${sar(c.bal)}</td></tr>`).join("")}</table></div>`}
+function vSettings(){const s=S.settings;return `<h1>${t("settings")}</h1><div class="card grid" style="margin-top:12px;max-width:520px">
+ <label>${t("company")}<input value="${esc(s.company)}" onchange="S.settings.company=this.value"></label><label>${t("vatNo")}<input value="${esc(s.vat)}" onchange="S.settings.vat=this.value"></label>
+ <label>${t("vat")}<input value="15%" disabled></label><label>${t("currency")}<input value="SAR" disabled></label>
+ <label>${t("notify")}<input value="${esc(s.email)}" onchange="S.settings.email=this.value"></label><label>${t("wa")}<input value="${esc(s.wa)}" onchange="S.settings.wa=this.value"></label>
+ <button class="btn pri" onclick="toast(t('saved'))">${t("save")}</button></div>`}
+
+// ----- plan
+function vPlan(){const ar=S.lang==="ar";return `<h1>${t("plan")}</h1><div class="grid g2" style="margin-top:12px">
+ <div class="card"><h2>${ar?"الإعداد المقترح":"Recommended setup"}</h2><ul class="clean">
+ <li><b>Cloudflare Pages</b> — ${ar?"مجاني، شبكة عالمية سريعة، قابل للتثبيت على iPhone وAndroid والكمبيوتر":"free, fast global network, installable on iPhone, Android and desktop"}</li>
+ <li><b>Supabase Pro</b> — USD 25/${ar?"شهر":"month"}: ${ar?"قاعدة بيانات 8 GB، 100,000 مستخدم نشط شهرياً، 250 GB نقل بيانات، نسخ احتياطي يومي، لا يتوقف أبداً":"8 GB database, 100,000 monthly active users, 250 GB egress, daily backups, never paused"}</li>
+ <li>${ar?"الإجمالي التقريبي":"Estimated total"}: <b>≈ USD 25 (≈ SAR 94) / ${ar?"شهر":"month"}</b> ${ar?"+ اسم نطاق سنوياً":"+ a domain name yearly"}</li>
+ <li>${ar?"عند زيادة الزيارات":"If traffic grows"}: Supabase compute Small +USD 15/${ar?"شهر":"month"}</li></ul></div>
+ <div class="card"><h2>${ar?"المراحل":"Phases"}</h2><ol class="clean">
+ ${(ar?["قاعدة البيانات، تسجيل الدخول، حفظ الطلبات","لوحة الإدارة: المنتجات، الأسعار، رفع Excel، حالة الطلب","الريال + الضريبة، العروض، الخصومات، القسائم","العربية، فواتير PDF، إشعارات واتساب/البريد","لوحة معلومات حقيقية، الدفع الإلكتروني (مدى/Apple Pay عبر Moyasar أو Tap)، ربط الفوترة الإلكترونية مع زاتكا"]
+ :["Database, logins, saved orders","Admin panel: products, prices, Excel upload, order status","SAR + VAT, offers, discounts, coupons","Arabic, PDF invoices, WhatsApp/email notifications","Real dashboard, online payment (Mada/Apple Pay via Moyasar or Tap), ZATCA e-invoicing integration"]).map(x=>`<li>${x}</li>`).join("")}</ol></div>
+ <div class="card" style="grid-column:1/-1"><h2>${ar?"أسئلة للعميل":"Questions for the client"}</h2><ul class="clean">
+ ${(ar?["ما العلامات التي تبيعونها، وبأي صيغة قائمة الأسعار؟","هل توجد أسعار خاصة لكل عيادة؟","شروط الدفع: آجل، مقدم، أم إلكتروني؟","التوصيل: ذاتي أم عبر SMSA/Aramex؟","الرقم الضريبي وتفاصيل ترخيص هيئة الغذاء والدواء (SFDA)"]
+ :["Which brands do you sell, and what format is your price list?","Special prices per clinic?","Payment terms: credit, advance, or online?","Delivery: own team or courier (SMSA/Aramex)?","VAT number and SFDA licence details"]).map(x=>`<li>${x}</li>`).join("")}</ul></div></div>`}
+render();
+</script>
+</body>
+</html>
