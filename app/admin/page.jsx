@@ -13,6 +13,7 @@ import {
   Download as DownloadIcon,
   Trash2 as TrashIcon,
   Plus as PlusIcon,
+  Users as UsersIcon,
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -40,6 +41,7 @@ const label = "text-[11px] font-mono uppercase tracking-widest text-muted-foregr
 const TABS = [
   { id: "overview", label: "Overview", icon: LayoutDashboardIcon },
   { id: "orders", label: "Orders", icon: PackageIcon },
+  { id: "clinics", label: "Clinics", icon: UsersIcon },
   { id: "prices", label: "Prices", icon: TagIcon },
   { id: "offers", label: "Offers & Coupons", icon: PercentIcon },
   { id: "settings", label: "Settings", icon: SettingsIcon },
@@ -122,6 +124,7 @@ export default function AdminPage() {
 
         {tab === "overview" && <Overview orders={orders} db={db} />}
         {tab === "orders" && <Orders orders={orders} db={db} />}
+        {tab === "clinics" && <Clinics db={db} orders={orders} />}
         {tab === "prices" && <Prices db={db} />}
         {tab === "offers" && <Offers db={db} />}
         {tab === "settings" && <Settings db={db} />}
@@ -301,7 +304,7 @@ function Orders({ orders, db }) {
                 <div className="flex-1 min-w-0">
                   <div className="font-mono font-bold">{o.orderId}</div>
                   <div className="text-xs text-muted-foreground">
-                    {new Date(o.createdAt).toLocaleString()} · {(o.brands || []).join(", ")} · {o.items.length} items
+                    {o.clinic?.name ? `${o.clinic.name} · ` : ""}{new Date(o.createdAt).toLocaleString()} · {(o.brands || []).join(", ")} · {o.items.length} items
                     {meta.tracking ? ` · ${meta.courier || ""} ${meta.tracking}` : ""}
                   </div>
                 </div>
@@ -652,6 +655,104 @@ function Settings({ db }) {
         >
           Update password
         </button>
+      </div>
+    </div>
+  );
+}
+
+function genPassword() {
+  const c = "ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
+  return Array.from({ length: 8 }, () => c[Math.floor(Math.random() * c.length)]).join("");
+}
+
+function Clinics({ db, orders }) {
+  const blank = { name: "", contact: "", phone: "", username: "", password: genPassword() };
+  const [f, setF] = useState(blank);
+  const [shown, setShown] = useState(null);
+  const clinics = db.clinics || [];
+  const set = (k, v) => setF((x) => ({ ...x, [k]: v }));
+  const create = () => {
+    if (!f.name.trim() || !f.username.trim() || f.password.length < 6)
+      return toast.error("Name, user ID and a 6+ character password are required");
+    if (clinics.some((c) => c.username.toLowerCase() === f.username.trim().toLowerCase()))
+      return toast.error("That user ID is taken");
+    updateAdmin((d) => {
+      d.clinics = d.clinics || [];
+      d.clinics.push({ ...f, username: f.username.trim(), id: Date.now(), active: true, createdAt: new Date().toISOString() });
+    });
+    setShown({ name: f.name, username: f.username.trim(), password: f.password });
+    setF({ ...blank, password: genPassword() });
+  };
+  const edit = (id, fn) => updateAdmin((d) => fn(d.clinics.find((c) => c.id === id)));
+  return (
+    <div className="space-y-6 animate-fade-in">
+      <div>
+        <h1 className="text-3xl md:text-5xl font-semibold tracking-tight mb-2">
+          Clinic <span className="gradient-text">Accounts</span>
+        </h1>
+        <p className="text-muted-foreground text-sm">
+          Doctors and companies can build cases freely, but must sign in with an account you create here before sending an order.
+        </p>
+      </div>
+      {shown && (
+        <div className="surface-card p-5 border border-primary/40">
+          <div className="text-sm font-semibold mb-2">Account created for {shown.name}. Send these details to the clinic:</div>
+          <div className="font-mono text-sm p-3 rounded-lg bg-secondary/40 border border-border/40">
+            User ID: {shown.username}<br />Password: {shown.password}
+          </div>
+          <button
+            className={cn(btnGhost, "mt-3")}
+            onClick={() => {
+              navigator.clipboard?.writeText(`Implantly login\nUser ID: ${shown.username}\nPassword: ${shown.password}\n${location.origin}${location.pathname.replace(/admin\/?$/, "")}`);
+              toast.success("Copied");
+            }}
+          >
+            Copy login message
+          </button>
+        </div>
+      )}
+      <div className="grid lg:grid-cols-3 gap-6">
+        <div className="surface-card p-6 space-y-3">
+          <h3 className="text-sm font-mono uppercase tracking-widest text-muted-foreground">New clinic / company</h3>
+          <div><div className={label}>Clinic or company name</div><input className={input} value={f.name} onChange={(e) => set("name", e.target.value)} /></div>
+          <div><div className={label}>Doctor / contact person</div><input className={input} value={f.contact} onChange={(e) => set("contact", e.target.value)} /></div>
+          <div><div className={label}>Phone / WhatsApp</div><input className={input} value={f.phone} onChange={(e) => set("phone", e.target.value)} /></div>
+          <div><div className={label}>User ID</div><input className={cn(input, "font-mono")} value={f.username} onChange={(e) => set("username", e.target.value)} autoCapitalize="none" /></div>
+          <div>
+            <div className={label}>Password</div>
+            <div className="flex gap-2">
+              <input className={cn(input, "font-mono")} value={f.password} onChange={(e) => set("password", e.target.value)} />
+              <button className={btnGhost} onClick={() => set("password", genPassword())}>New</button>
+            </div>
+          </div>
+          <button onClick={create} className={cn(btn, "w-full")}>Create account</button>
+        </div>
+        <div className="lg:col-span-2 space-y-3">
+          {clinics.length === 0 && <div className="surface-card p-8 text-center text-sm text-muted-foreground">No clinic accounts yet.</div>}
+          {clinics.map((c) => (
+            <div key={c.id} className="surface-card p-5 flex flex-wrap items-center gap-4" style={{ opacity: c.active ? 1 : 0.55 }}>
+              <div className="flex-1 min-w-0">
+                <div className="font-semibold">{c.name}</div>
+                <div className="text-xs text-muted-foreground font-mono">
+                  {c.username}{c.contact ? ` · ${c.contact}` : ""}{c.phone ? ` · ${c.phone}` : ""} · {orders.filter((o) => o.clinic?.id === c.id).length} orders
+                </div>
+              </div>
+              <button
+                className={btnGhost}
+                onClick={() => {
+                  const pw = genPassword();
+                  edit(c.id, (x) => (x.password = pw));
+                  setShown({ name: c.name, username: c.username, password: pw });
+                }}
+              >
+                Reset password
+              </button>
+              <button className={btnGhost} onClick={() => edit(c.id, (x) => (x.active = !x.active))}>
+                {c.active ? "Disable" : "Enable"}
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

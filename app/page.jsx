@@ -44,7 +44,8 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { saveCase, saveOrder } from "@/lib/store";
-import { checkCoupon } from "@/lib/admin-store";
+import { checkCoupon, currentClinic } from "@/lib/admin-store";
+import { ClinicLoginModal } from "@/components/ClinicLogin";
 import {
   SURGICAL_CATALOG,
   resolveSurgicalCatalog,
@@ -2464,6 +2465,7 @@ function Q() {
   let [g, z] = useState({});
   let [y, b] = useState("");
   let [k, j] = useState(null);
+  let [needLogin, setNeedLogin] = useState(false);
   useEffect(() => {
     let t = sessionStorage.getItem("implantly_draft_state");
     if (t) {
@@ -2568,6 +2570,12 @@ function Q() {
     o("recommend");
   }
   async function Z() {
+    let clinicSession = currentClinic();
+    if (!clinicSession) {
+      setNeedLogin(true);
+      return;
+    }
+    setNeedLogin(false);
     try {
       let e = Object.values(g).flat();
       localStorage.setItem("implantly_cart", JSON.stringify(e));
@@ -2585,6 +2593,7 @@ function Q() {
             ),
           ),
           items: e,
+          clinic: clinicSession,
           coupon: (() => {
             try {
               return JSON.parse(localStorage.getItem("implantly_coupon"));
@@ -2738,6 +2747,9 @@ function Q() {
         )}
         {i === "cart" && (
           <X toothCases={f} kitsByTooth={g} grandTotal={v} onConfirm={Z} />
+        )}
+        {needLogin && (
+          <ClinicLoginModal onClose={() => setNeedLogin(false)} onSuccess={() => Z()} />
         )}
         {i === "confirmed" && (
           <Y
