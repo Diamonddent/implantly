@@ -66,6 +66,7 @@ export function Navbar() {
       window.removeEventListener("cartUpdated", e);
     };
   }, [e, i]);
+  if (e?.startsWith("/admin")) return null;
   return (
     <header className="relative border-b border-border/60 backdrop-blur-xl bg-background/40 sticky top-0 z-30">
       <div className="container flex items-center justify-between py-4 gap-4">

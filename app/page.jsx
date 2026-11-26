@@ -44,6 +44,7 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { saveCase, saveOrder } from "@/lib/store";
+import { checkCoupon } from "@/lib/admin-store";
 import {
   SURGICAL_CATALOG,
   resolveSurgicalCatalog,
@@ -2270,6 +2271,21 @@ function E({ toothCase: e, kit: l }) {
   );
 }
 function D({ toothCases: e, kitsByTooth: l, grandTotal: a, onContinue: c }) {
+  let [cc, setCc] = useState("");
+  let [cp, setCp] = useState(null);
+  let applyCoupon = () => {
+    let r = checkCoupon(cc, a);
+    if (r.ok) {
+      setCp(r);
+      localStorage.setItem("implantly_coupon", JSON.stringify({ code: cc.trim().toUpperCase(), name: r.name, discount: r.discount }));
+      toast.success(`Coupon applied: ${r.name}`);
+    } else {
+      setCp(null);
+      localStorage.removeItem("implantly_coupon");
+      toast.error(r.reason);
+    }
+  };
+  let net = cp ? Math.max(0, Math.round((a - cp.discount) * 100) / 100) : a;
   return (
     <div className="surface-card p-6 sticky top-24">
       <h3 className="text-sm font-mono uppercase tracking-widest text-muted-foreground mb-4">
@@ -2294,10 +2310,30 @@ function D({ toothCases: e, kitsByTooth: l, grandTotal: a, onContinue: c }) {
         })}
       </dl>
       <div className="my-4 h-px bg-border" />
+      <div className="flex gap-2 mb-3">
+        <input
+          value={cc}
+          onChange={(e) => setCc(e.target.value)}
+          placeholder="Coupon code"
+          className="flex-1 min-w-0 px-3 py-2 rounded-lg border border-border bg-background text-sm font-mono focus:outline-none focus:border-primary"
+        />
+        <button
+          onClick={applyCoupon}
+          className="px-3 py-2 rounded-lg bg-primary/10 hover:bg-primary/20 text-primary border border-primary/30 text-xs font-semibold"
+        >
+          Apply
+        </button>
+      </div>
+      {cp && (
+        <div className="flex justify-between text-xs mb-2">
+          <span className="text-muted-foreground">Discount · {cp.name}</span>
+          <span className="font-mono text-primary">−${cp.discount}</span>
+        </div>
+      )}
       <div className="flex justify-between items-baseline">
         <span className="text-sm text-muted-foreground">Total</span>
         <span className="text-2xl font-mono font-semibold gradient-text">
-          ${a}
+          ${net}
         </span>
       </div>
       <button
@@ -2549,7 +2585,15 @@ function Q() {
             ),
           ),
           items: e,
+          coupon: (() => {
+            try {
+              return JSON.parse(localStorage.getItem("implantly_coupon"));
+            } catch {
+              return null;
+            }
+          })(),
         });
+      localStorage.removeItem("implantly_coupon");
       b(l.orderId);
     } catch {
       b("MD-" + Math.random().toString(36).slice(2, 8).toUpperCase());
