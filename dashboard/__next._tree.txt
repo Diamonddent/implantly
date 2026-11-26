@@ -1,5 +1,5 @@
-:HL["/implantly/_next/static/chunks/39ziti8f12-6-.css","style"]
+:HL["/implantly/_next/static/chunks/21a_yaaaphjns.css","style"]
 :HL["/implantly/_next/static/media/07c7676b89ed2778-s.p.2bn3s6zvc0dyp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"dashboard","h":96,"c":"$Q2"}]]
-0:{"b":"vomtkDQyQxy3pObQIou8V","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"b0FybXOEtiU7t73MoUv40","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
